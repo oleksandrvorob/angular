@@ -1,0 +1,21 @@
+<div>
+	<p mat-dialog-title color="foreground">{{ 'dialog_question' | translate }}</p>
+	<mat-dialog-content class="mat-typography">
+	</mat-dialog-content>
+	<mat-dialog-actions>
+		<div class="buttonsContainer">
+			<div class="buttonsGroup">
+				<button mat-button mat-dialog-close
+					color="foreground"
+					(click)="dialogRef.close('cancel')">{{ 'cancel' | translate }}</button>
+			</div>
+			<div class="buttonsGroup">
+				<button mat-button mat-dialog-close (click)="dialogRef.close('discard')"
+					color="warn">{{ 'discard' | translate }}</button>
+				<button mat-raised-button mat-dialog-close cdkFocusInitial (click)="dialogRef.close('save')"
+					color="primary">{{ 'save' | translate }}</button>
+			</div>
+		</div>
+
+	</mat-dialog-actions>
+</div>

@@ -1,0 +1,17 @@
+// load base demo styles. for demo purpose, the style will be loaded here
+// for production, include the demo base style in /src/index.html file to load the css earlier
+@import "../../../../../assets/css/demo1/style.bundle.css";
+
+// static skins css
+@import "../../../../../assets/css/demo1/skins/header/base/dark.css";
+@import "../../../../../assets/css/demo1/skins/header/menu/light.css";
+@import "../../../../../assets/css/demo1/skins/brand/dark.css";
+@import "../../../../../assets/css/demo1/skins/aside/dark.css";
+
+kt-base {
+	height: 100%;
+
+	.kt-grid--root {
+		height: 100%;
+	}
+}

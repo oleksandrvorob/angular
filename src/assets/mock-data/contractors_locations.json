@@ -1,0 +1,144 @@
+{
+    "data": [
+        {
+            "name": "contractor1",
+            "location": {
+				"lat": 57.678418,
+				"lng": 7.809007,
+				"marker": {
+					"lat": 57.678418,
+					"lng": 7.809007,
+					"draggable": true
+				},
+				"zoom": 6,
+				"address": "test full address contractor1"
+			}
+        },
+        {
+            "name": "contractor2",
+            "location": {
+				"lat": 57.47198,
+				"lng": 10.75894,
+				"marker": {
+					"lat": 57.47198,
+					"lng": 10.75894,
+					"draggable": true
+				},
+				"zoom": 6,
+				"address": "test full address contractor2"
+			}
+        },
+        {
+            "name": "contractor3",
+            "location": {
+				"lat": 56.01467,
+				"lng": 9.03694,
+				"marker": {
+					"lat": 56.01467,
+					"lng": 9.03694,
+					"draggable": true
+				},
+				"zoom": 6,
+				"address": "test full address contractor3"
+			}
+        },
+        {
+            "name": "contractor4",
+            "location": {
+				"lat": 55.92699,
+				"lng": 11.63780,
+				"marker": {
+					"lat": 55.92699,
+					"lng": 11.63780,
+					"draggable": true
+				},
+				"zoom": 6,
+				"address": "test address street contractor4"
+			}
+        },
+        {
+            "name": "contractor5",
+            "location": {
+				"lat": 58.16116,
+				"lng": 10.01693,
+				"marker": {
+					"lat": 58.16116,
+					"lng": 10.01693,
+					"draggable": true
+				},
+				"zoom": 6,
+				"address": "test address street contractor5"
+			}
+		},
+		{
+            "name": "contractor6",
+            "location": {
+				"lat": 57.00144,
+				"lng": 13.82437,
+				"marker": {
+					"lat": 57.00144,
+					"lng": 13.82437,
+					"draggable": true
+				},
+				"zoom": 6,
+				"address": "test address street contractor6"
+			}
+		},
+		{
+            "name": "contractor7",
+            "location": {
+				"lat": 58.12858,
+				"lng": 8.34251,
+				"marker": {
+					"lat": 58.12858,
+					"lng": 8.34251,
+					"draggable": true
+				},
+				"zoom": 6,
+				"address": "test address street contractor7"
+			}
+		},
+		{
+            "name": "contractor8",
+            "location": {
+				"lat": 54.39620,
+				"lng": 12.58046,
+				"marker": {
+					"lat": 54.39620,
+					"lng": 12.58046,
+					"draggable": true
+				},
+				"zoom": 6,
+				"address": "test address contractor8"
+			}
+		},
+		{
+            "name": "contractor9",
+            "location": {
+				"lat": 54.02407,
+				"lng": 15.58525,
+				"marker": {
+					"lat": 54.02407,
+					"lng": 15.58525,
+					"draggable": true
+				},
+				"zoom": 6,
+				"address": "test address contractor9"
+			}
+		},
+		{
+            "name": "contractor10",
+            "location": {
+				"lat":  57.48381,
+				"lng": 16.63919,
+				"marker": {
+					"lat":  57.48381,
+					"lng": 16.63919,
+					"draggable": true
+				},
+				"zoom": 6,
+				"address": "test address contractor10"
+			}
+        }
+    ]
+}

@@ -1,0 +1,14 @@
+.buttonsContainer {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.buttonsGroup {
+    button {
+        margin-left: 8px;
+        &:first-child {
+            margin: 0;
+        }
+    }
+}

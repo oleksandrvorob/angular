@@ -1,0 +1,7 @@
+<div class="file-drop-area">
+  <span class="fake-btn" color="primary">{{ 'choose_file' | translate }}</span>
+  <span class="file-msg">{{file ? file.name : 'drag_and_drop_file_here' | translate }}</span>
+  <input class="file-input" type="file" accept=".pdf, .png, .jpg, .gif">
+</div>
+<kt-progress [progress]="progress"></kt-progress>
+<!-- or drag and drop file here -->

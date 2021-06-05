@@ -1,0 +1,338 @@
+<div class="col-md-12">
+	<form class="kt-form" id="overviewFrm" [formGroup]="overviewData" autocomplete="off">
+		<input type="hidden" formControlName="clientId" class="form-control" name="clientId" id="clientId">
+		<div class="kt-portlet__body" ktClickCatcher #flagDiv="tbDropdown">
+			<div class="form-group row">
+				<div class="col-md-6 mb-4">
+					<mat-card color="#000" class="background accent">
+						<div class="row mt-3">
+							<mat-form-field class="col-md-6" appearance="outline">
+								<input type="text" matInput placeholder="{{ 'client_number' | translate }}"
+									formControlName="client_number" name="client_number" id="client_number" readonly>
+							</mat-form-field>
+
+							<mat-form-field class="col-md-6" appearance="outline">
+								<mat-label>{{ 'company' | translate }}</mat-label>
+								<mat-select formControlName="companyId" name="companyId" id="companyId"
+									[(ngModel)]="companyCode"
+									(selectionChange)="selectCompany($event)"
+									>
+									<mat-option *ngFor="let item of companyList" [value]="item.companyId">
+										{{item.code}}
+									</mat-option>
+								</mat-select>
+							</mat-form-field>
+						</div>
+						<div class="row">
+							<mat-form-field class="col-md-6" appearance="outline">
+								<input type="text" matInput placeholder="{{ 'name1' | translate }}"
+									formControlName="name1" name="name1" id="name1">
+							</mat-form-field>
+							<mat-form-field appearance="outline" class="col-md-6" >
+								<input type="text" matInput placeholder="{{ 'name2' | translate }}"
+									formControlName="name2" name="name2" id="name2">
+							</mat-form-field>
+						</div>
+						<mat-form-field appearance="outline" class="field-full-width">
+							<input type="text" matInput placeholder="{{ 'street' | translate }}"
+								formControlName="street" name="street" id="street" (keyup)="getLocationInfo()">
+						</mat-form-field>
+						<div>
+							<div class="row">
+								<mat-form-field appearance="outline" class="col-md-4">
+									<input type="text" matInput onlyNumber #zipcode
+										placeholder="{{ 'zipcode' | translate }}" formControlName="zipcode"
+										name="zipcode" id="zipcode" (keyup)="getCityName($event)">
+								</mat-form-field>
+								<mat-form-field appearance="outline" class="col-md-8">
+									<input type="text" matInput placeholder="{{ 'city' | translate }}"
+										formControlName="city" name="city" id="city" [(ngModel)]="cityName" (keyup)="getLocationInfo()">
+								</mat-form-field>
+							</div>
+							<p *ngIf="zipCodeError" style="color: red;">
+								Zip code "{{zipcode.value}}" not found.
+							</p>
+						</div>
+						<div class="row">
+							<mat-form-field appearance="outline" class="col-md-6">
+								<mat-label>{{ 'state' | translate }}</mat-label>
+								<mat-select formControlName="state" name="state" id="state" [(ngModel)]="stateName">
+									<mat-option *ngFor="let item of stateList" [value]="item.code">
+										{{item.name}}
+									</mat-option>
+								</mat-select>
+							</mat-form-field>
+							<mat-form-field appearance="outline" *ngIf="countryName" class="col-md-6">
+								<input type="text" matInput placeholder="{{ 'country' | translate }}"
+									formControlName="country" name="country" id="country" [(ngModel)]="countryName">
+							</mat-form-field>
+						</div>
+						<div class="row">
+							<mat-form-field appearance="outline" class="col-md-4">
+								<input type="text" matInput onlyTelNumber placeholder="{{ 'phone1' | translate }}"
+									formControlName="phone1" name="phone1" id="phone1"
+									(click)="changePhoneNumber($event)" (blur)="emptyValue($event)">
+							</mat-form-field>
+							<mat-form-field appearance="outline" class="col-md-4">
+								<input type="text" matInput onlyTelNumber placeholder="{{ 'phone2' | translate }}"
+									formControlName="phone2" name="phone2" id="phone2"
+									(click)="changePhoneNumber($event)" (blur)="emptyValue($event)">
+							</mat-form-field>
+							<mat-form-field appearance="outline" class="col-md-4">
+								<input type="text" matInput onlyTelNumber placeholder="{{ 'mobile' | translate }}"
+									formControlName="mobile" name="mobile" id="mobile"
+									(click)="changePhoneNumber($event)" (blur)="emptyValue($event)">
+							</mat-form-field>
+						</div>
+
+						<div class="row">
+							<mat-form-field appearance="outline" class="col-md-6">
+								<input type="text" matInput placeholder="{{ 'fax' | translate }}" formControlName="fax"
+									name="fax" id="fax">
+							</mat-form-field>
+							<mat-form-field appearance="outline" class="col-md-6">
+								<input type="text" matInput placeholder="{{ 'email' | translate }}"
+									formControlName="email" name="email" id="email">
+							</mat-form-field>
+						</div>
+						<div>
+							<label for="Account Managers">{{ 'account_managers' | translate }}
+							</label>
+							<div class="col-md-12">
+								<button mat-button color="primary" aria-label="add" (click)="addAccountManager()"><mat-icon>add_circle</mat-icon></button>
+							</div>
+							<section class="mt-3" style="padding-left: 10px; padding-right: 10px;" formArrayName="account_managers" *ngFor="let accoutManager of overviewData.controls['account_managers']['controls']; let i = index;">
+								<div class="row" [formGroupName]="i">
+									<mat-form-field appearance="outline" class="col-md-5">
+										<input type="text" matInput placeholder="{{ 'account_manager_name' | translate }}" formControlName="name"
+											name="name" id="name">
+									</mat-form-field>
+									<mat-form-field appearance="outline" class="col-md-5">
+										<input type="text" matInput placeholder="{{ 'account_manager_telephonenumber' | translate }}"
+											formControlName="phone" name="phone" id="phone">
+									</mat-form-field>
+									<div class="col-md-2">
+										<button mat-button color="warn" aria-label="remove" (click)="removeAccountManager(i)"><mat-icon>remove_circle</mat-icon></button>
+									</div>
+								</div>
+							</section>
+						</div>
+					</mat-card>
+				</div>
+				<div class="col-md-6 mb-4">
+					<mat-card>
+						<mat-form-field appearance="outline" class="field-full-width">
+							<input type="hidden"
+								formControlName="alternative_invoice_recipient" name="alternative_invoice_recipient"
+								id="alternative_invoice_recipient">
+							<input type="text" matInput placeholder="{{ 'alternative_invoice_recipient' | translate }}"
+								formControlName="alternative_invoice_recipient_name" name="alternative_invoice_recipient_name"
+								id="alternative_invoice_recipient_name">
+							<div *ngIf="flagDiv.isShowTbDropDown" class="dropdown" (click)="onClickTable($event)">
+								<table class="table table-striped" datatable
+									[dtOptions]="dtOptionsForAlternativeInvoiceRecipient">
+									<thead>
+										<tr>
+											<th scope="col">{{ 'no' | translate }}</th>
+											<th scope="col">{{ 'name1' | translate }}</th>
+											<th scope="col">{{ 'name2' | translate }}</th>
+											<th scope="col">{{'location' | translate}} ({{'zipcode' | translate}}
+												{{'city' | translate}})
+											</th>
+										</tr>
+									</thead>
+									<tbody *ngIf="alternativeInvoiceRecipientList">
+										<tr *ngFor="let atrData of alternativeInvoiceRecipientList"
+											(click)="selectAlternativeInvoiceRecipient(atrData)"
+											id="Alternative_Invoice_Recipient_Item">
+											<td>{{ atrData.client_number }}</td>
+											<td>{{ atrData.name1}}</td>
+											<td>{{ atrData.name2 }}</td>
+											<td>{{ atrData.zipcode}} {{atrData.city}}</td>
+										</tr>
+									</tbody>
+									<tbody
+										*ngIf="alternativeInvoiceRecipientList && alternativeInvoiceRecipientList.length === 0">
+										<tr>
+											<td colspan="6" class="text-center">
+												{{ 'no_data_available' | translate }}</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</mat-form-field>
+						<div class="row">
+							<mat-form-field appearance="outline" class="col-md-6">
+								<mat-label>{{ 'rech_rhythm' | translate }}</mat-label>
+								<mat-select formControlName="rech_rhythm" name="rech_rhythm" id="rech_rhythm">
+									<mat-option *ngFor="let item of rechRhythmLust" value="{{item}}">
+										{{item}}
+									</mat-option>
+								</mat-select>
+							</mat-form-field>
+							<mat-form-field appearance="outline" class="col-md-6">
+								<mat-label>{{ 'zahl_rhythm' | translate }}</mat-label>
+								<mat-select formControlName="zahl_rhythm" name="zahl_rhythm" id="zahl_rhythm">
+									<mat-option *ngFor="let item of zahlRhythmList" value="{{item}}">
+										{{item}}
+									</mat-option>
+								</mat-select>
+							</mat-form-field>
+						</div>
+						<div class="mb-3">
+							<label for="contract_file">{{ 'contract_file' | translate }}
+							</label>
+
+							<kt-file-upload formControlName="contract_file" ngDefaultControl [progress]="progress">
+							</kt-file-upload>
+							<div *ngIf="uploadedFile" style="padding: 10px 23px;">
+								<a href="{{uploadedFile}}" class="_13fGr7icUgaCGrjavrc9mq _1BT-S8C-vOfBo0wv5F8Nlc"
+									rel="nofollow noopener noreferrer me" target="_blank">{{fileName}}</a>
+								<button mat-button color="primary" aria-label="download" (click)="download()"><mat-icon>cloud_download</mat-icon></button>
+							</div>
+						</div>
+						<div class="row">
+							<mat-form-field appearance="outline" class="col-md-6">
+								<input type="text" matInput daterangepicker [options]="contract_start_date"
+									placeholder="{{ 'contract_start_date' | translate }}"
+									formControlName="contract_start_date" name="contract_start_date"
+									id="contract_start_date" (selected)="contract_start_dateSelect($event)"
+									(applyDaterangepicker)="dateApplied($event)" [errorStateMatcher]="matcher">
+							</mat-form-field>
+							<mat-form-field appearance="outline" class="col-md-6">
+								<input type="text" matInput daterangepicker [options]="contract_end_date"
+									placeholder="{{ 'contract_end_date' | translate }}"
+									formControlName="contract_end_date" name="contract_end_date" id="contract_end_date"
+									(selected)="contract_end_dateSelect($event)"
+									(applyDaterangepicker)="dateApplied($event)" [errorStateMatcher]="matcher">
+							</mat-form-field>
+						</div>
+						<div class="row">
+							<mat-form-field appearance="outline" class="col-md-6">
+								<mat-label>{{ 'termination_time' | translate }}</mat-label>
+								<mat-select formControlName="termination_time" name="termination_time"
+									id="termination_time" (selectionChange)="changeTerminationTime($event)">
+									<mat-option *ngFor="let item of terminationTimeList" value="{{item}}">
+										{{item}}
+									</mat-option>
+								</mat-select>
+							</mat-form-field>
+							<mat-form-field appearance="outline" *ngIf="termination_time_value_show" class="col-md-6">
+								<input type="text" matInput placeholder="{{ 'days' | translate }}"
+									formControlName="termination_time_value" name="termination_time_value"
+									id="termination_time_value">
+							</mat-form-field>
+							<mat-checkbox class="col-lg-6" formControlName="print_branch_invoice"
+								id="print_branch_invoice" name="print_branch_invoice">
+								{{ 'print_branch_invoice' | translate }}
+							</mat-checkbox>
+						</div>
+					</mat-card>
+				</div>
+				<div class="col-md-6 mb-4">
+					<mat-card>
+						<div class="row mt-3">
+							<mat-form-field appearance="outline" class="col-md-6">
+								<input type="text" matInput placeholder="{{ 'iban' | translate }}"
+									formControlName="iban" name="iban" id="iban" (keyup)="validateIBAN($event)" #iban>
+							</mat-form-field>
+							<mat-form-field appearance="outline" class="col-md-12 col-xl-6">
+								<input type="text" matInput placeholder="{{ 'bank' | translate }}" formControlName="bank" name="client_bank" id="client_bank" [(ngModel)]="bankName">
+								<div *ngIf="flagDiv.isShowBankDropdownTable" class="dropdown" (click)="onClickBankTable($event)">
+									<table class="table table-striped" datatable [dtOptions]="dtBankOptions">
+										<thead>
+											<tr>
+												<th scope="col">{{'bank_no' | translate}}</th>
+												<th scope="col">{{'bank_name' | translate}}</th>
+												<th scope="col">{{'account_no' | translate}}</th>
+												<th scope="col">{{'bank_code' | translate}}</th>
+												<th scope="col">{{'company_code' | translate}}</th>
+												<th scope="col">{{'iban' | translate}}</th>
+												<th scope="col">{{'bic' | translate}}</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr *ngFor="let bank of bankList; index as i" (click)="selectBank(bank)" id="bank_Item">
+												<td>{{ bank.bank_number }}</td>
+												<td>{{ bank.name }}</td>
+												<td>{{ bank.account_number }}</td>
+												<td>{{ bank.bank_code }}</td>
+												<td>{{ bank.company_code }}</td>
+												<td>{{ bank.iban }}</td>
+												<td>{{ bank.bic }}</td>
+											</tr>
+										</tbody>
+										<tbody *ngIf="bankList && bankList.length === 0">
+											<tr>
+												<td colspan="6" class="text-center">{{ 'no_data_available' | translate }}</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</mat-form-field>
+						</div>
+						<div class="row">
+							<mat-form-field appearance="outline" class="col-md-6">
+								<input type="text" matInput placeholder="{{ 'tax_identification_number' | translate }}"
+									formControlName="tax_identification_number" name="tax_identification_number"
+									id="tax_identification_number">
+							</mat-form-field>
+							<mat-form-field appearance="outline" class="col-md-6">
+								<input type="text" matInput placeholder="{{ 'national_tax_number' | translate }}"
+									formControlName="national_tax_number" name="national_tax_number"
+									id="national_tax_number">
+							</mat-form-field>
+							<mat-form-field appearance="outline" class="col-md-6">
+								<input type="text" matInput onlyNumber placeholder="{{ 'vendor_number' | translate }}"
+									formControlName="vendor_number" name="vendor_number" id="vendor_number">
+							</mat-form-field>
+							<mat-form-field appearance="outline" class="col-md-6">
+								<input type="text" matInput placeholder="{{ 'cost_center' | translate }}"
+									formControlName="cost_center" name="cost_center" id="cost_center">
+							</mat-form-field>
+						</div>
+					</mat-card>
+				</div>
+				<div class="col-md-6 mb-4">
+					<mat-card>
+						<div class="row mt-3">
+							<mat-form-field appearance="outline" class="col-md-6">
+								<input type="text" matInput onlyNumber placeholder="{{ 'debitor_no' | translate }}"
+									formControlName="debitor_no" name="debitor_no" id="debitor_no">
+							</mat-form-field>
+							<div class="col-md-12 col-xl-6" style="display: flex;">
+								<mat-checkbox style="margin-top: 5px;" formControlName="ustr_mandatory"
+									id="ustr_mandatory" name="ustr_mandatory" (click)="changeuStrMandatory()">
+									{{ 'vat_mandatory' | translate }}</mat-checkbox>
+								<mat-form-field appearance="outline" class="field-full-width ustr_mandatory_value">
+									<input type="text" matInput onlyNumber style="text-align: right;"
+										formControlName="ustr_mandatory_value" id="ustr_mandatory_value" max="100"
+										maxlength="3" name="ustr_mandatory_value"
+										[attr.disabled]="ustr_mandatory_disabled == true ? true : null">
+								</mat-form-field>
+								<span style="margin-top: 5px; margin-left: 5px;">%</span>
+							</div>
+						</div>
+						<div class="row">
+							<mat-form-field appearance="outline" class="col-lg-6 col-md-6">
+								<input type="text" matInput daterangepicker [options]="billed"
+									placeholder="{{ 'billed' | translate }}"
+									formControlName="billed" name="billed"
+									id="billed" (selected)="billedDateSelect($event)"
+									(applyDaterangepicker)="dateApplied($event)" [errorStateMatcher]="matcher">
+							</mat-form-field>
+							<mat-form-field appearance="outline" class="col-lg-6 col-md-6">
+								<mat-label>{{ 'currency' | translate }}</mat-label>
+								<mat-select formControlName="currency" name="currency" id="currency">
+									<mat-option *ngFor="let item of currencyList" value="{{item}}">
+										{{item}}
+									</mat-option>
+								</mat-select>
+							</mat-form-field>
+						</div>
+					</mat-card>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>

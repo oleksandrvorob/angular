@@ -1,0 +1,40 @@
+<mat-card-content>
+  <mat-tab-group class="demo-tab-group">
+    <mat-tab label="{{'overview' | translate}}">
+      <div class="demo-tab-content">
+        <kt-overview [basicData]="basicData" [uploadedFile]="uploadedFile" [fileName]="fileName" [isAddMode]="isAddMode" [fileKeyName]="fileKeyName" (changeFormData)="setDisableStatus($event)" (getNewContractorIdEvent)="getNewContractorId($event)"></kt-overview>
+      </div>
+	</mat-tab>
+
+	<mat-tab label="{{'order' | translate}}">
+		<div class="demo-tab-content">
+			<kt-order [tourLists]="tourList" [isAddMode]="isAddMode" [contractorId]="contractorId"></kt-order>
+		</div>
+	</mat-tab>
+
+	<mat-tab label="{{'specialorder' | translate}}">
+		<div class="demo-tab-content">
+			<kt-special-tour [specialtourData]="specialtourData" (changeFormData)="setDisableStatus($event)" [contractorId]="contractorId">
+			</kt-special-tour>
+		</div>
+	</mat-tab>
+
+    <mat-tab label="{{'contactPerson' | translate}}">
+      <div class="demo-tab-content">
+        <kt-contact-person [personIdsList]="personIdsList"></kt-contact-person>
+      </div>
+    </mat-tab>
+    <mat-tab label="{{'comments' | translate}}">
+      <div class="demo-tab-content">
+        <kt-comments [comments]="comments" (changeFormData)="setDisableStatus($event)"></kt-comments>
+      </div>
+    </mat-tab>
+
+    <mat-tab label="{{'history' | translate}}" *ngIf="!isAddMode">
+      <div class="demo-tab-content">
+        <kt-history></kt-history>
+      </div>
+    </mat-tab>
+
+  </mat-tab-group>
+</mat-card-content>

@@ -1,0 +1,94 @@
+{
+    "data": [
+        {
+			"id": 1,
+			"invoice_no": 44529,
+            "invoice_date": "28.02.2019",
+			"invoice_net": "9.018,00",
+			"invoice_vat": "1.713,42",
+			"invoice_gross": "10.731,42",
+			"client_id": 1
+        },
+        {
+			"id": 2,
+			"invoice_no": 44339,
+            "invoice_date": "15.02.2019",
+			"invoice_net": "11.022,00",
+			"invoice_vat": "2.094,18",
+			"invoice_gross": "13.116,18",
+			"client_id": 1
+		},
+		{
+			"id": 3,
+			"invoice_no": 44143,
+            "invoice_date": "31.01.2019",
+			"invoice_net": "13.944,00",
+			"invoice_vat": "2.649,36",
+			"invoice_gross": "16.593,36",
+			"client_id": 2
+		},
+		{
+			"id": 4,
+			"invoice_no": 43912,
+            "invoice_date": "15.01.2019",
+			"invoice_net": "11.813,00",
+			"invoice_vat": "2.244,47",
+			"invoice_gross": "14.057,47",
+			"client_id": 2
+		},
+		{
+			"id": 5,
+			"invoice_no": 43999,
+            "invoice_date": "15.01.2019",
+			"invoice_net": "-1.162,00",
+			"invoice_vat": "-220,78",
+			"invoice_gross": "-1.382,78",
+			"client_id": 3
+		},
+		{
+			"id": 6,
+			"invoice_no": 43792,
+            "invoice_date": "31.12.2018",
+			"invoice_net": "7.165,00",
+			"invoice_vat": "2.094,18",
+			"invoice_gross": "13.116,18",
+			"client_id": 3
+		},
+		{
+			"id": 7,
+			"invoice_no": 43630,
+            "invoice_date": "15.12.2018",
+			"invoice_net": "11.620,00",
+			"invoice_vat": "2.207,80",
+			"invoice_gross": "13.827,80",
+			"client_id": 4
+		},
+		{
+			"id": 8,
+			"invoice_no": 43631,
+            "invoice_date": "15.12.2019",
+			"invoice_net": "-120,00",
+			"invoice_vat": "-22,80",
+			"invoice_gross": "-142,80",
+			"client_id": 4
+		},
+		{
+			"id": 9,
+			"invoice_no": 43408,
+            "invoice_date": "30.11.2018",
+			"invoice_net": "12.782,00",
+			"invoice_vat": "2.428,58",
+			"invoice_gross": "15.210,58",
+			"client_id": 5
+		},
+		{
+			"id": 10,
+			"invoice_no": 43281,
+            "invoice_date": "15.11.2018",
+			"invoice_net": "12.782,00",
+			"invoice_vat": "2.428,58",
+			"invoice_gross": "15.210,58",
+			"client_id": 5
+        }
+    ]
+}

@@ -1,0 +1,98 @@
+body{
+    font-size: 8pt;
+    font-family: Roboto,"Helvetica Neue",sans-serif;
+}
+
+.content{
+    padding: 5px;
+    color: black;
+    font-family: Roboto,"Helvetica Neue",sans-serif;
+}
+
+header{
+    text-align: center;
+}
+
+.underline{
+    font-size: 10px;
+    padding-left: 10px;
+
+}
+.wide{
+    width: 100%;
+}
+
+hr{
+    background-color:#999999;
+    margin-bottom: 2px;
+}
+
+.itemsContainer{
+    margin: 30px 0px 0px;
+    min-height: 360px;
+    height: auto;
+   
+        table td {
+            border-left: 2em solid transparent;
+           
+         }
+         table td:first-child {
+            border-left: 0;
+         }
+         table tr:first-child td {
+            border-top: 0;
+         }
+    
+}
+
+.mainContainer{
+    display: grid;
+    grid-template-columns: 1fr auto;
+    padding: 0px 10px;
+    .rightSide{
+
+        .billContainer{
+
+            h5{
+                width: 100%;
+                text-align: center;
+            }
+
+            border: 1px solid black;
+            padding: 15px;
+            min-width: 220px;
+        }
+    }
+}
+
+.totalContainer{
+margin: 0px 0px 30px;
+    .selected{
+        border: 1px solid black;
+        margin: 5px;
+        font-weight: bold;
+
+        td {
+            padding-top:2px;
+            padding-bottom:2px;
+            padding-right:5px;   
+          }
+          
+          td:first-child {
+            padding-left:5px;
+            padding-right:0;
+          }
+    }
+}
+
+footer{
+    margin: 30px 0px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+
+    p{
+        margin: 1px 0px;
+        font-size: 7pt;
+    }
+
+}

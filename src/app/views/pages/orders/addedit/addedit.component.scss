@@ -1,0 +1,52 @@
+
+.checkbox-group{
+	display: flex;
+	margin-left: 15px;
+}
+
+input[type="checkbox"]{
+	width: 15px;
+	height: 15px;
+	margin-left: 5px;
+  }
+
+  .billing{
+	display: flex;
+	align-items: center;
+	margin-left: 10px;
+	margin-top: 8px;
+  }
+  .billing label{
+	margin: 0px;
+  }
+
+  .invoice{
+	display: flex;
+	align-items: center;
+	margin-left: 10px;
+	margin-top: 8px;
+}
+.invoice label{
+	margin: 0px;
+}
+
+.dropdown {
+	position: absolute;
+	border: 1px solid #dfdcdc;
+	z-index: 9999;
+	background-color: white;
+	padding: 5px;
+	border-radius: 5px;
+	font-size: 13px;
+  }
+
+   input:focus + .dropdown  {
+	display: block;
+	z-index: 9999999;
+  }
+
+mat-divider {
+	display: block;
+	margin: 0;
+	border-top: 1px solid rgba(0,0,0,.12);
+}

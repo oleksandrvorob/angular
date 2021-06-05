@@ -1,0 +1,19 @@
+<!-- begin: Header -->
+<div ktHeader #ktHeader class="kt-header kt-grid__item" [ngClass]="htmlClassService.getClasses('header', true)" id="kt_header">
+	<ngb-progressbar class="kt-loading-bar" *ngIf="(loader.progress$|async) > 0" [value]="loader.progress$|async" height="3px"></ngb-progressbar>
+
+	<!-- begin: Header Menu -->
+	<div  [hidden]="subheaderService.disabled$ | async">
+		<div class="header-title">
+			<h3 *ngIf="title" class="kt-subheader__title" [translate]="title"></h3>
+		</div>
+	</div>
+	<!-- end: Header Menu -->
+
+	<!-- begin:: Header Topbar -->
+	<!-- empty div to fix topbar to stay on the right when menu-horizontal is hidden -->
+	<div *ngIf="!menuHeaderDisplay"></div>
+	<kt-topbar></kt-topbar>
+	<!-- end:: Header Topbar -->
+</div>
+<!-- end: Header -->

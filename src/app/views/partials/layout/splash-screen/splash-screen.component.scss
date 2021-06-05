@@ -1,0 +1,29 @@
+:host {
+	.kt-splash-screen {
+		background-color: #f2f3f8;
+		position: absolute;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		height: 100%;
+		width: 100%;
+		z-index: 1000;
+
+		img {
+			width: 90px;
+			margin-bottom: 30px;
+		}
+
+		span {
+			margin-bottom: 30px;
+		}
+
+		::ng-deep {
+			.mat-progress-spinner circle, .mat-spinner circle {
+				// brand color
+				stroke: #5d78ff;
+			}
+		}
+	}
+}

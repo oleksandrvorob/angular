@@ -1,0 +1,100 @@
+<mat-card>
+  <div class="mat-table__wrapper">
+
+    <div class="col-12 mb-3">
+      <div class="row">
+        <div class="col-8">
+          <button mat-raised-button color="primary"
+            (click)="addNewContractor()">{{'add_contractor' | translate }}</button>
+        </div>
+        <div class="col-4">
+          <input type="text" name="global_search" (input)="filterData($event)" class="form-control"
+            placeholder="{{'search' | translate }}">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <mat-checkbox class="view-inactive mr-2" [(ngModel)]="veiwInactive" (change)="onCheckViewAll($event)">{{ 'view_inactive' | translate }}
+          </mat-checkbox>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="clearfix"></div>
+
+    <div class="col-12" [ngClass]="{'norecord': dataSourcee.length == 0 }">
+      <table class="table table-striped" datatable [dtOptions]="dtOptions">
+        <thead>
+          <tr>
+            <th scope="col"><input type="text" name="contractor_number" class="form-control"
+                placeholder="Lp-Nr." (input)="filterData($event)" /></th>
+            <th scope="col"><input type="text" name="name1" class="form-control" placeholder="Name 1"
+                (input)="filterData($event)" /></th>
+            <th scope="col"><input type="text" name="name2" class="form-control" placeholder="Name 2"
+                (input)="filterData($event)" /></th>
+            <th scope="col"><input type="text" name="city" class="form-control" placeholder="Stadt"
+                (input)="filterData($event)" /></th>
+          </tr>
+          <tr>
+            <th scope="col" style="width: 18%;">{{'contractor_number' | translate }}</th>
+            <th scope="col" style="width: 15%;">{{'name1' | translate }}</th>
+            <th scope="col" style="width: 15%;">{{'name2' | translate }}</th>
+            <th scope="col" style="width: 40%;">{{'location' | translate}} ({{'zipcode' | translate}}
+              {{'city' | translate}})</th>
+            <th scope="col" class="text-center nosort">{{'action' | translate }}</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="dataSourcee?.length != 0">
+          <tr *ngFor="let route of dataSourcee; index as i" [class.active]="i == selectedRow" (click)="selectRow(i)">
+            <td>{{ route.contractor_number }}</td>
+            <td>{{ route.name1 }}</td>
+            <td>{{ route.name2}}</td>
+            <td>{{ route.zipcode}} {{route.city}}</td>
+            <td class="text-center" nowrap>
+              <button mat-icon-button color="primary" (click)="goToUser(route.contractorId)"
+                matTooltip="{{'edit_contractor' | translate }}">
+                <mat-icon>create</mat-icon>
+              </button>&nbsp;
+
+              <button mat-icon-button (click)="deleteContractor(route.contractorId)" color="warn"
+                matTooltip="{{'delete_contractor' | translate }}" type="button">
+                <mat-icon>delete</mat-icon>
+              </button>
+
+            </td>
+          </tr>
+        </tbody>
+        <tbody *ngIf="dataSourcee?.length === 0">
+          <tr>
+            <td colspan="5" class="text-center">{{ 'no_data_available' | translate }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="hidden-table">
+        <table class="table table-striped" datatable [dtOptions]="dtOptions">
+          <thead>
+            <tr>
+              <th scope="col"><input type="text" name="contractor_number" class="form-control"
+                  placeholder="Search ContractorID" (input)="filterData($event)" /></th>
+              <th scope="col"><input type="text" name="name1" class="form-control" placeholder="Search Name1"
+                  (input)="filterData($event)" /></th>
+              <th scope="col"><input type="text" name="name2" class="form-control" placeholder="Search Name2"
+                  (input)="filterData($event)" /></th>
+              <th scope="col"><input type="text" name="city" class="form-control" placeholder="Search City"
+                  (input)="filterData($event)" /></th>
+            </tr>
+            <tr>
+              <th scope="col" style="width: 18%;">{{'contractor_number' | translate }}</th>
+              <th scope="col" style="width: 15%;">{{'name1' | translate }}</th>
+              <th scope="col" style="width: 15%;">{{'name2' | translate }}</th>
+              <th scope="col" style="width: 40%;">{{'location' | translate}} ({{'zipcode' | translate}}
+                {{'city' | translate}})</th>
+              <th scope="col" class="text-center nosort">{{'action' | translate }}</th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+    </div>
+  </div>
+</mat-card>

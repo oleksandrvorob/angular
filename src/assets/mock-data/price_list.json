@@ -1,0 +1,29 @@
+{
+    "data": [
+        {
+            "client_price": 13.12,
+            "valid_from": "1.11.2014",
+            "date_of_expiry": "5.5.2017"
+        },
+        {
+            "client_price": 21.32,
+            "valid_from": "7.01.2016",
+            "date_of_expiry": "8.9.2018"
+        },
+        {
+            "client_price": 47.82,
+            "valid_from": "12.05.2013",
+            "date_of_expiry": "5.8.2013"
+        },
+        {
+            "client_price": 63.78,
+            "valid_from": "05.05.2016",
+            "date_of_expiry": "5.5.2016"
+        },
+        {
+            "client_price": 95.37,
+            "valid_from": "3.09.2019",
+            "date_of_expiry": "5.15.2019"
+        }
+    ]
+}

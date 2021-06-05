@@ -1,0 +1,23 @@
+<!-- begin:: Header Topbar -->
+<div class="kt-header__topbar">
+	<!-- <div class="row"> -->
+	<!-- <div class="col-lg-12 text-right pb-2"> -->
+
+	<button mat-button color="warn" aria-label="cancel" (click)="cancel()" [disabled]="isDisabledCancel">
+		<mat-icon>cancel</mat-icon>
+	</button>
+	<button mat-button color="primary" aria-label="save" (click)="save()" [disabled]="isDisabledSave">
+		<mat-icon>save</mat-icon>
+	</button>
+	<!-- </div> -->
+	<!-- </div> -->
+	<div *ngIf="currentUserRoleID && currentUserRoleID === 'SUPERADMIN'">
+		<!--begin: Language bar -->
+		<kt-language-selector></kt-language-selector>
+		<!--end: Language bar -->
+	</div>
+	<!--begin: User bar -->
+	<kt-user-profile></kt-user-profile>
+	<!--end: User bar -->
+</div>
+<!-- end:: Header Topbar -->

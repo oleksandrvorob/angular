@@ -1,0 +1,144 @@
+{
+    "data": [
+        {
+            "name": "client1",
+            "location": {
+				"lat": 51.678418,
+				"lng": 7.809007,
+				"marker": {
+					"lat": 51.678418,
+					"lng": 7.809007,
+					"draggable": true
+				},
+				"zoom": 6,
+				"address": "test full address client1"
+			}
+        },
+        {
+            "name": "client2",
+            "location": {
+				"lat": 52.47198,
+				"lng": 10.75894,
+				"marker": {
+					"lat": 52.47198,
+					"lng": 10.75894,
+					"draggable": true
+				},
+				"zoom": 6,
+				"address": "test full address client2"
+			}
+        },
+        {
+            "name": "client3",
+            "location": {
+				"lat": 50.01467,
+				"lng": 13.03694,
+				"marker": {
+					"lat": 50.01467,
+					"lng": 13.03694,
+					"draggable": true
+				},
+				"zoom": 6,
+				"address": "test full address client3"
+			}
+        },
+        {
+            "name": "client4",
+            "location": {
+				"lat": 49.92699,
+				"lng": 15.63780,
+				"marker": {
+					"lat": 49.92699,
+					"lng": 15.63780,
+					"draggable": true
+				},
+				"zoom": 6,
+				"address": "test address street client4"
+			}
+        },
+        {
+            "name": "client5",
+            "location": {
+				"lat": 52.16116,
+				"lng": 11.01693,
+				"marker": {
+					"lat": 52.16116,
+					"lng": 11.01693,
+					"draggable": true
+				},
+				"zoom": 6,
+				"address": "test address street client5"
+			}
+		},
+		{
+            "name": "client6",
+            "location": {
+				"lat": 52.00144,
+				"lng": 13.82437,
+				"marker": {
+					"lat": 52.00144,
+					"lng": 13.82437,
+					"draggable": true
+				},
+				"zoom": 6,
+				"address": "test address street client6"
+			}
+		},
+		{
+            "name": "client7",
+            "location": {
+				"lat": 51.12858,
+				"lng": 15.34251,
+				"marker": {
+					"lat": 51.12858,
+					"lng": 15.34251,
+					"draggable": true
+				},
+				"zoom": 6,
+				"address": "test address street client7"
+			}
+		},
+		{
+            "name": "client8",
+            "location": {
+				"lat": 53.39620,
+				"lng": 12.58046,
+				"marker": {
+					"lat": 53.39620,
+					"lng": 12.58046,
+					"draggable": true
+				},
+				"zoom": 6,
+				"address": "test address client8"
+			}
+		},
+		{
+            "name": "client9",
+            "location": {
+				"lat": 52.02407,
+				"lng": 8.58525,
+				"marker": {
+					"lat": 52.02407,
+					"lng": 8.58525,
+					"draggable": true
+				},
+				"zoom": 6,
+				"address": "test address client9"
+			}
+		},
+		{
+            "name": "client10",
+            "location": {
+				"lat":  53.48381,
+				"lng": 7.63919,
+				"marker": {
+					"lat":  53.48381,
+					"lng": 7.63919,
+					"draggable": true
+				},
+				"zoom": 6,
+				"address": "test address client10"
+			}
+        }
+    ]
+}

@@ -1,0 +1,114 @@
+{
+	"extends": "tslint:recommended",
+	"rulesDirectory": [
+		"codelyzer"
+	],
+	"rules": {
+		"array-type": false,
+		"arrow-parens": false,
+		"import-blacklist": [
+			true,
+			"rxjs/Rx"
+		],
+		"interface-name": false,
+		"max-classes-per-file": false,
+		"max-line-length": [
+			true,
+			210
+		],
+		"member-access": false,
+		"member-ordering": [
+			true,
+			{
+				"order": [
+					"static-field",
+					"instance-field",
+					"static-method",
+					"instance-method"
+				]
+			}
+		],
+		"no-consecutive-blank-lines": false,
+		"no-console": [
+			true,
+			"debug",
+			"info",
+			"time",
+			"timeEnd",
+			"trace"
+		],
+		"no-empty": false,
+		"no-inferrable-types": [
+			false,
+			"ignore-params"
+		],
+		"no-arg": true,
+		"no-bitwise": true,
+		"no-misused-new": true,
+		"no-non-null-assertion": true,
+		"no-shadowed-variable": true,
+		"no-string-literal": false,
+		"no-string-throw": false,
+		"no-trailing-whitespace": true,
+		"no-unnecessary-initializer": true,
+		"no-unused-expression": true,
+		"align": false,
+		"no-use-before-declare": true,
+		"no-var-keyword": true,
+		"object-literal-sort-keys": false,
+		"ordered-imports": false,
+		"trailing-comma": false,
+		"one-line": [
+			true,
+			"check-open-brace",
+			"check-catch",
+			"check-else",
+			"check-whitespace"
+		],
+		"prefer-const": false,
+		"quotemark": [
+			true,
+			"single"
+		],
+		"radix": true,
+		"forin": false,
+		"semicolon": [true, "always"],
+		"triple-equals": [true, "allow-null-check"],
+		"indent": [false, "tabs", 2],
+		"typedef-whitespace": [
+			true,
+			{
+				"call-signature": "nospace",
+				"index-signature": "nospace",
+				"parameter": "nospace",
+				"property-declaration": "nospace",
+				"variable-declaration": "nospace"
+			}
+		],
+		"unified-signatures": true,
+		"variable-name": false,
+		"whitespace": [
+			true,
+			"check-branch",
+			"check-decl",
+			"check-operator",
+			"check-type"
+		],
+		"no-output-on-prefix": true,
+		"no-inputs-metadata-property": true,
+		"no-outputs-metadata-property": true,
+		"no-host-metadata-property": false,
+		"no-input-rename": true,
+		"no-output-rename": true,
+		"use-lifecycle-interface": true,
+		"use-pipe-transform-interface": true,
+		"component-class-suffix": true,
+		"directive-class-suffix": true,
+		"object-literal-shorthand": false,
+		"no-angle-bracket-type-assertion": false,
+		"only-arrow-functions": false,
+		"prefer-for-of": false,
+		"object-literal-key-quotes": false,
+		"deprecation": false
+	}
+}

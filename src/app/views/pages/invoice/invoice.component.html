@@ -1,0 +1,110 @@
+<mat-card>
+    <div #content  class="content">
+        <header>
+                <img alt="logo" [attr.src]="headerLogo" style="height: 100px; width:210px;"/>
+        </header>
+
+        <hr/>
+        <p class="underline">{{invoiceData.ourCompany.name+" "+invoiceData.ourCompany.adress}}</p>
+        <div class="mainContainer">
+            <div class="leftSide">
+                    <p>{{invoiceData.company.name}}</p>
+                    <p>{{invoiceData.company.street+" "+invoiceData.company.number}}</p>
+                    <p>{{invoiceData.company.zip+" "+invoiceData.company.city}}</p>
+                    <p><b>Fur Filiale:</b></p>
+                    <p>{{invoiceData.subsidiary.name}}</p>
+                    <p>{{invoiceData.subsidiary.street+" "+invoiceData.subsidiary.number}}</p>
+                    <p>{{invoiceData.subsidiary.zip+" "+invoiceData.subsidiary.city}}</p>
+                    <p>{{invoiceData.subsidiary.taxNumber}}</p>
+            </div>
+            <div class="rightSide">
+                <div class="billContainer">
+                    <h5>Bill</h5>
+                    <table>
+                        <tr><td>Number:</td><td><b>{{invoiceData.bill.number}}</b></td></tr>
+                        <tr><td>Client #:</td><td><b>{{invoiceData.bill.clientNum}}</b></td></tr>
+                        <tr><td>Date:</td><td><b>{{invoiceData.bill.date}}</b></td></tr>
+                        <tr><td>User:</td><td><b>{{invoiceData.bill.user}}</b></td></tr>
+                        <tr><td>Phone:</td><td><b>{{invoiceData.bill.phone}}</b></td></tr>
+                        <tr><td>Fax:</td><td><b>{{invoiceData.bill.fax}}</b></td></tr>
+                        <tr><td>Email:</td><b>{{invoiceData.bill.email}}</b><td></td></tr>
+                        <tr><td>Creditor #:</td><td><b>{{invoiceData.bill.creditorNumber}}</b></td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="itemsContainer">
+            <p>We bill you as following:</p>
+            <p><b>From:{{invoiceData.dateRange.from+" - "+invoiceData.dateRange.to}}</b></p>
+            <div class="items">
+                <table>
+                    <tbody *ngIf="invoiceData.items">
+                        <tr>
+                            <td class="wide"></td>
+                            <td><b>Price/day</b></td>
+                            <td><b>Days</b></td>
+                            <td><b>Total</b></td>
+                        </tr>
+                        <tr *ngFor="let item of invoiceData.items; index as i">
+                            <td class="wide">{{item.name}}</td>
+                            <td>{{formatter.format(item.price)}}</td>
+                            <td>{{item.days}}</td>
+                            <td>{{formatter.format(item.price*item.days)}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+           </div>
+            <div class="totalContainer">
+            <hr/>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td class="wide">Nettosumme</td>
+                            <td>{{formatter.format(getTotal())}}</td>
+                        </tr>
+                        <tr>
+                            <td>+19% Mehrwertsteur</td>
+                            <td>{{formatter.format(getTotal()*0.19)}}</td>
+
+                        </tr>
+                        <tr class="selected">
+                            <td>
+                                Zu zahlender Betrag in EUR
+                            </td>
+                            <td>{{formatter.format(getTotal()*1.19)}}</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                (zahlbar: sofort, netto)
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+        <footer>
+            <div class="leftSide">
+                <p>{{invoiceData.ourCompany.name}}</p>
+                <p>{{invoiceData.ourCompany.adress}}</p>
+                <p>{{invoiceData.ourCompany.genPartner}}</p>
+                <p>{{invoiceData.ourCompany.commRegNumber}}</p>
+                <p>{{invoiceData.ourCompany.manPartner}}</p>
+                <p>{{invoiceData.ourCompany.taxNumber}}</p>
+
+            </div>
+            <div class="rightSide">
+                <p>&nbsp;</p>
+                <p>{{invoiceData.ourCompany.bankName}}</p>
+                <p>{{invoiceData.ourCompany.iban}}</p>
+                <p>{{invoiceData.ourCompany.bic}}</p>
+                <p>&nbsp;</p>
+                <p>{{invoiceData.ourCompany.website}}</p>
+            </div>
+        </footer>
+    </div>
+	<button mat-raised-button color="primary" style="margin-right: 20px;" (click)="savePdf()">{{'Save Invoice' | translate}}</button>
+	<button mat-raised-button color="primary" (click)="printPage()">{{'Print Invoice' | translate}}</button>
+</mat-card>

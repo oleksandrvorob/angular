@@ -1,0 +1,40 @@
+<div class="row">
+  <div class="col-12 ">
+    <div class="row">
+        <div class="col-8">
+        </div>
+        <div class="col-4">
+            <input type="text" name="" (input)="filterData($event)" class="form-control" placeholder="{{'search' | translate}}">
+        </div>
+    </div>
+  </div>
+  <div class="clearfix"></div>
+  <div class="col-md-12" [ngClass]="{'norecord': tourList.length == 0 }" >
+    <table class="table table-striped" datatable [dtOptions]="dtOptions" >
+      <thead>
+      <tr>
+        <th scope="col">{{'order_number' | translate }}</th>
+        <th scope="col">{{'client_price' | translate }}</th>
+        <th scope="col">{{'price_basis' | translate }}</th>
+        <th scope="col">{{'day' | translate }}</th>
+        <!-- <th scope="col">{{'remarks' | translate }}</th> -->
+        <th scope="col" class="nosort">{{'action' | translate }}</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let atrData of tourList; index as i">
+        <td>{{ atrData.order_number }}</td>
+        <td>{{ atrData.client_price }}</td>
+        <td>{{ atrData.price_basis }}</td>
+        <td>{{ atrData.day }}</td>
+        <!-- <td>{{ atrData.remarks }}</td> -->
+        <td class="text-center" nowrap>
+          <button mat-icon-button color="primary" (click)="addOrderToClient(atrData.ordersId)" matTooltip="{{'add_client_order' | translate}}">
+            <mat-icon>add_box</mat-icon>
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

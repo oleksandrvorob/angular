@@ -1,0 +1,429 @@
+<form class="kt-form" autocomplete="off" id="overviewFrm" [formGroup]="overviewData">
+	<input type="hidden" name="contractorId" formControlName="contractorId">
+	<div class="kt-portlet__body" ktClickCatcher #flagDiv="tbDropdown">
+		<div class="form-group row">
+			<div class="col-lg-6 mb-4">
+				<mat-card>
+					<div class="row mt-3">
+						<mat-form-field class="col-6">
+							<input type="text" matInput placeholder="{{ 'contractor_number' | translate }}"
+								formControlName="contractor_number" name="contractor_number" id="contractor_number">
+						</mat-form-field>
+						<mat-form-field class="col-6">
+							<mat-label>{{ 'payment_stop' | translate }}</mat-label>
+							<mat-select formControlName="payment_stop" name="payment_stop" id="payment_stop"
+								(selectionChange)="payment_stopSelected($event)" class="is-payment-stop"
+								[errorStateMatcher]="matcherForPaymentStop">
+								<mat-option *ngFor="let item of paymentstopList" [value]="item.value"
+									class="is-payment-stop">
+									"{{item.name}}"
+								</mat-option>
+							</mat-select>
+						</mat-form-field>
+						<mat-form-field class="col-6">
+							<input type="text" matInput placeholder="{{ 'contractor_alias' | translate }}"
+								formControlName="alias" name="alias" id="alias">
+						</mat-form-field>
+					</div>
+					<div class="row">
+						<mat-form-field class="col-6">
+							<input type="text" matInput placeholder="{{ 'name1' | translate }}" formControlName="name1"
+								name="name1" id="name1">
+						</mat-form-field>
+						<mat-form-field class="col-6">
+							<input type="text" matInput placeholder="{{ 'name2' | translate }}" formControlName="name2"
+								name="name2" id="name2">
+						</mat-form-field>
+					</div>
+					<mat-form-field class="field-full-width">
+						<input type="text" matInput placeholder="{{ 'street' | translate }}" formControlName="street"
+							name="street" id="street" (keyup)="getLocationInfo()">
+					</mat-form-field>
+					<div>
+						<div class="row">
+							<mat-form-field class="col-4">
+								<input type="text" matInput onlyNumber #zipcode
+									placeholder="{{ 'zipcode' | translate }}" formControlName="zipcode" name="zipcode"
+									id="zipcode" (keyup)="getCityName($event)">
+							</mat-form-field>
+							<mat-form-field class="col-8">
+								<input type="text" matInput placeholder="{{ 'city' | translate }}"
+									formControlName="city" name="city" id="city" [(ngModel)]="cityName"
+									(keyup)="getLocationInfo()">
+							</mat-form-field>
+						</div>
+						<p *ngIf="zipCodeError" style="color: red;">
+							Zip code "{{zipcode.value}}" not found.
+						</p>
+					</div>
+
+					<div class="row">
+						<mat-form-field class="col-6">
+							<mat-label>{{ 'state' | translate }}</mat-label>
+							<mat-select formControlName="state" name="state" id="state" [(ngModel)]="stateName">
+								<mat-option *ngFor="let item of stateList" [value]="item.code">
+									{{item.name}}
+								</mat-option>
+							</mat-select>
+						</mat-form-field>
+						<mat-form-field *ngIf="countryName" class="col-6">
+							<input type="text" matInput placeholder="{{ 'country' | translate }}"
+								formControlName="country" name="country" id="country" [(ngModel)]="countryName">
+						</mat-form-field>
+					</div>
+					<div class="row">
+						<mat-form-field class="col-6">
+							<input type="text" matInput onlyTelNumber placeholder="{{ 'phone1' | translate }}"
+								formControlName="phone1" name="phone1" id="phone1" (click)="changePhoneNumber($event)"
+								(blur)="emptyValue($event)">
+						</mat-form-field>
+
+						<mat-form-field class="col-6 mobile-chip">
+							<mat-chip-list #chipList aria-label="Mobile selection">
+								<mat-chip *ngFor="let mobile of mobiles" [selectable]="selectable"
+									[removable]="removable" (removed)="remove(mobile)">
+									{{mobile}}
+									<mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+								</mat-chip>
+								<input placeholder="{{ 'mobile' | translate }}" [matChipInputFor]="chipList"
+									onlyTelNumber [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+									formControlName="mobiles" name="mobiles" id="mobiles"
+									[matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)"
+									(click)="changePhoneNumber($event)">
+							</mat-chip-list>
+						</mat-form-field>
+					</div>
+					<div class="row">
+						<mat-form-field class="col-6">
+							<input type="text" matInput placeholder="{{ 'fax' | translate }}" formControlName="fax"
+								name="fax" id="fax">
+						</mat-form-field>
+						<mat-form-field class="col-6">
+							<input type="text" matInput placeholder="{{ 'email' | translate }}" formControlName="email"
+								name="email" id="email">
+						</mat-form-field>
+					</div>
+					<div class="row">
+						<mat-form-field class="col-6">
+							<mat-label>{{ 'rech_rhythm' | translate }}</mat-label>
+							<mat-select formControlName="rech_rhythm" name="rech_rhythm" id="rech_rhythm">
+								<mat-option *ngFor="let item of rechRhythmLust" value="{{item}}">
+									{{item}}
+								</mat-option>
+							</mat-select>
+						</mat-form-field>
+						<mat-form-field class="col-6">
+							<mat-label>{{ 'zahl_rhythm' | translate }}</mat-label>
+							<mat-select formControlName="zahl_rhythm" name="zahl_rhythm" id="zahl_rhythm">
+								<mat-option *ngFor="let item of zahlRhythmList" value="{{item}}">
+									{{item}}
+								</mat-option>
+							</mat-select>
+						</mat-form-field>
+					</div>
+					<div class="row">
+						<mat-form-field class="col-6">
+							<mat-label>{{ 'termination_time' | translate }}</mat-label>
+							<mat-select formControlName="termination_time" name="termination_time" id="termination_time"
+								(selectionChange)="changeTerminationTime($event)">
+								<mat-option *ngFor="let item of terminationTimeList" value="{{item}}">
+									{{item}}
+								</mat-option>
+							</mat-select>
+						</mat-form-field>
+						<mat-form-field *ngIf="termination_time_value_show" class="col-6">
+							<input type="text" matInput placeholder="{{ 'days' | translate }}"
+								formControlName="termination_time_value" name="termination_time_value"
+								id="termination_time_value">
+						</mat-form-field>
+					</div>
+				</mat-card>
+			</div>
+			<div class="col-lg-6 mb-4">
+				<mat-card>
+					<div class="mt-3">
+						<div class="row">
+							<mat-form-field class="col-6">
+								<input type="text" matInput placeholder="{{ 'iban' | translate }}"
+									formControlName="iban" name="iban" id="iban" (keyup)="validateIBAN($event)" #iban>
+							</mat-form-field>
+							<mat-form-field class="col-6">
+								<input type="text" matInput placeholder="{{ 'bic' | translate }}" formControlName="bic"
+									name="bic" id="bic" [(ngModel)]="bic">
+							</mat-form-field>
+						</div>
+						<div *ngIf="!isValidIBAN && iban.value !== ''" style="padding-top: 10px;">
+							<p class="alert-danger" style="padding: 18px; border-radius: 3px;">
+								IBAN is invalid
+							</p>
+						</div>
+					</div>
+					<div class="row">
+						<mat-form-field class="col-12">
+							<input type="text" matInput placeholder="{{ 'bank' | translate }}" formControlName="bank"
+								name="contractor_bank" id="contractor_bank" [(ngModel)]="bankName">
+							<div *ngIf="flagDiv.isShowBankDropdownTable" class="dropdown right-align-table"
+								(click)="onClickTable($event)">
+								<table class="table table-striped" datatable [dtOptions]="dtBankOptions">
+									<thead>
+										<tr>
+											<th scope="col">{{'bank_no' | translate}}</th>
+											<th scope="col">{{'bank_name' | translate}}</th>
+											<th scope="col">{{'account_no' | translate}}</th>
+											<th scope="col">{{'bank_code' | translate}}</th>
+											<th scope="col">{{'company_code' | translate}}</th>
+											<th scope="col">{{'iban' | translate}}</th>
+											<th scope="col">{{'bic' | translate}}</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr *ngFor="let bank of bankList; index as i" (click)="selectBank(bank)"
+											id="bank_Item">
+											<td>{{ bank.bank_number }}</td>
+											<td>{{ bank.name }}</td>
+											<td>{{ bank.account_number }}</td>
+											<td>{{ bank.bank_code }}</td>
+											<td>{{ bank.company_code }}</td>
+											<td>{{ bank.iban }}</td>
+											<td>{{ bank.bic }}</td>
+										</tr>
+									</tbody>
+									<tbody *ngIf="bankList && bankList.length === 0">
+										<tr>
+											<td colspan="6" class="text-center">{{ 'no_data_available' | translate }}
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</mat-form-field>
+					</div>
+					<div class="row">
+						<mat-form-field class="col-6">
+							<input type="text" matInput placeholder="{{ 'tax_identification_number' | translate }}"
+								formControlName="tax_identification_number" name="tax_identification_number"
+								id="tax_identification_number">
+						</mat-form-field>
+						<mat-form-field class="col-6">
+							<input type="text" matInput placeholder="{{ 'national_tax_number' | translate }}"
+								formControlName="national_tax_number" name="national_tax_number"
+								id="national_tax_number">
+						</mat-form-field>
+					</div>
+					<div class="row">
+						<mat-form-field class="col-6">
+							<input type="text" matInput placeholder="{{ 'billed' | translate }}"
+								formControlName="billed" name="billed" id="billed">
+						</mat-form-field>
+						<mat-form-field class="col-6">
+							<mat-label>{{ 'currency' | translate }}</mat-label>
+							<mat-select formControlName="currency" name="currency" id="currency">
+								<mat-option *ngFor="let item of currencyList" value="{{item}}">
+									{{item}}
+								</mat-option>
+							</mat-select>
+						</mat-form-field>
+					</div>
+
+					<div class="row">
+						<div class="col-lg-12 col-md-6" style="display: flex;">
+							<mat-checkbox formControlName="ustr_mandatory" style="margin-top: 5px;" id="ustr_mandatory"
+								name="ustr_mandatory" (click)="changeuStrMandatory()">{{ 'vat_mandatory' | translate }}
+							</mat-checkbox>
+							<mat-form-field class="field-full-width ustr_mandatory_value">
+								<input type="text" matInput onlyNumber style="text-align: right;"
+									formControlName="ustr_mandatory_value" id="ustr_mandatory_value" max="100"
+									maxlength="3" name="ustr_mandatory_value"
+									[attr.disabled]="ustr_mandatory_disabled == true ? true : null">
+							</mat-form-field>
+							<span style="margin-top: 5px; margin-left: 5px;">%</span>
+						</div>
+					</div>
+
+					<div class="row">
+						<mat-form-field class="col-6">
+							<input type="text" matInput placeholder="{{ 'creditor_no' | translate }}"
+								formControlName="creditor_no" name="creditor_no" id="creditor_no">
+						</mat-form-field>
+						<mat-form-field class="col-6">
+							<input type="text" matInput placeholder="{{ 'debitor_no' | translate }}"
+								formControlName="debitor_no" name="debitor_no" id="debitor_no">
+						</mat-form-field>
+					</div>
+
+					<div class="mb-3">
+						<label for="contract_file">{{ 'contract_file' | translate }}
+						</label>
+
+						<kt-file-upload formControlName="contract_file" ngDefaultControl></kt-file-upload>
+						<div *ngIf="uploadedFile" style="padding: 10px 23px;">
+							<a href="{{uploadedFile}}" class="_13fGr7icUgaCGrjavrc9mq _1BT-S8C-vOfBo0wv5F8Nlc"
+								rel="nofollow noopener noreferrer me" target="_blank">{{fileName}}</a>
+							<button mat-button color="primary" aria-label="download" (click)="download()">
+								<mat-icon>cloud_download</mat-icon>
+							</button>
+						</div>
+					</div>
+
+					<div class="row">
+						<mat-form-field class="col-md-6">
+							<input type="text" matInput daterangepicker [options]="contract_start_date"
+								placeholder="{{ 'contract_start_date' | translate }}"
+								formControlName="contract_start_date" name="contract_start_date"
+								id="contract_start_date" (selected)="contract_start_dateSelect($event)"
+								(applyDaterangepicker)="dateApplied($event)" [errorStateMatcher]="matcher">
+						</mat-form-field>
+						<mat-form-field class="col-md-6">
+							<input type="text" matInput daterangepicker [options]="contract_end_date"
+								placeholder="{{ 'contract_end_date' | translate }}" formControlName="contract_end_date"
+								name="contract_end_date" id="contract_end_date"
+								(selected)="contract_end_dateSelect($event)"
+								(applyDaterangepicker)="dateApplied($event)" [errorStateMatcher]="matcher">
+						</mat-form-field>
+					</div>
+
+					<div class="row">
+						<mat-form-field class="col-6">
+							<input type="text" daterangepicker [options]="commercial_date" matInput
+								placeholder="{{ 'commercial_date' | translate }}" formControlName="commercial_date"
+								name="commercial_date" id="commercial_date" (selected)="commercial_dateSelect($event)"
+								(applyDaterangepicker)="dateApplied($event)" [errorStateMatcher]="matcher">
+						</mat-form-field>
+						<mat-checkbox formControlName="contract_ok" name="contract_ok" id="contract_ok" class="col-6">
+							{{ 'contract_ok' | translate }}</mat-checkbox>
+					</div>
+				</mat-card>
+			</div>
+			<div class="col-lg-6 mb-4">
+				<mat-card>
+					<div class="mt-3">
+						<div class="row">
+							<mat-form-field class="col-6">
+								<input type="hidden" formControlName="bank1Id" name="bank1Id" id="bank1Id">
+								<input type="text" matInput placeholder="{{ 'bank' | translate }} 1"
+									formControlName="bank1_name" name="bank1_name" id="bank1_name">
+
+								<div *ngIf="flagDiv.isShowTbDropDown && flagDiv.targetId=='bank1_name'" class="dropdown"
+									(click)="onClickTable($event)">
+									<table class="table table-striped" datatable [dtOptions]="dtBankOptions">
+										<thead>
+											<tr>
+												<th scope="col">{{'bank_no' | translate}}</th>
+												<th scope="col">{{'bank_name' | translate}}</th>
+												<th scope="col">{{'account_no' | translate}}</th>
+												<th scope="col">{{'bank_code' | translate}}</th>
+												<th scope="col">{{'company_code' | translate}}</th>
+												<th scope="col">{{'iban' | translate}}</th>
+												<th scope="col">{{'bic' | translate}}</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr *ngFor="let bank of bankList; index as i" (click)="selectBank1(bank)"
+												id="bank1_Item">
+												<td>{{ bank.bank_number }}</td>
+												<td>{{ bank.name }}</td>
+												<td>{{ bank.account_number }}</td>
+												<td>{{ bank.bank_code }}</td>
+												<td>{{ bank.company_code }}</td>
+												<td>{{ bank.iban }}</td>
+												<td>{{ bank.bic }}</td>
+											</tr>
+										</tbody>
+										<tbody *ngIf="bankList && bankList.length === 0">
+											<tr>
+												<td colspan="6" class="text-center">
+													{{ 'no_data_available' | translate }}</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</mat-form-field>
+							<mat-form-field class="col-6">
+								<input type="hidden" formControlName="bank2Id" name="bank2Id" id="bank2Id">
+								<input type="text" matInput placeholder="{{ 'bank' | translate }} 2"
+									formControlName="bank2_name" name="bank2_name" id="bank2_name">
+
+								<div *ngIf="flagDiv.isShowTbDropDown && flagDiv.targetId=='bank2_name'" class="dropdown"
+									(click)="onClickTable($event)">
+									<table class="table table-striped" datatable [dtOptions]="dtBankOptions">
+										<thead>
+											<tr>
+												<th scope="col">{{'bank_no' | translate}}</th>
+												<th scope="col">{{'bank_name' | translate}}</th>
+												<th scope="col">{{'account_no' | translate}}</th>
+												<th scope="col">{{'bank_code' | translate}}</th>
+												<th scope="col">{{'company_code' | translate}}</th>
+												<th scope="col">{{'iban' | translate}}</th>
+												<th scope="col">{{'bic' | translate}}</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr *ngFor="let bank of bankList; index as i" (click)="selectBank2(bank)"
+												id="bank2_Item">
+												<td>{{ bank.bank_number }}</td>
+												<td>{{ bank.name }}</td>
+												<td>{{ bank.account_number }}</td>
+												<td>{{ bank.bank_code }}</td>
+												<td>{{ bank.company_code }}</td>
+												<td>{{ bank.iban }}</td>
+												<td>{{ bank.bic }}</td>
+											</tr>
+										</tbody>
+										<tbody *ngIf="bankList && bankList.length === 0">
+											<tr>
+												<td colspan="6" class="text-center">
+													{{ 'no_data_available' | translate }}</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</mat-form-field>
+						</div>
+					</div>
+				</mat-card>
+			</div>
+			<div class="col-lg-12 mb-4">
+				<mat-card *ngIf="payment_stop_box">
+					<div class="row">
+						<mat-form-field class="col-6">
+							<input type="text" matInput placeholder="{{ 'bankaccount_liquidator' | translate }}"
+								formControlName="bankaccount_liquidator" name="bankaccount_liquidator"
+								id="bankaccount_liquidator">
+						</mat-form-field>
+						<mat-form-field class="col-6">
+							<input type="text" matInput placeholder="{{ 'account_holder' | translate }}"
+								formControlName="account_holder" name="account_holder" id="account_holder">
+						</mat-form-field>
+					</div>
+
+					<div class="row">
+						<mat-form-field class="col-4">
+							<input type="text" matInput placeholder="{{ 'bank_name' | translate }}"
+								formControlName="payment_stop_bank_name" name="payment_stop_bank_name"
+								id="payment_stop_bank_name" [(ngModel)]="paymentStopBankName">
+						</mat-form-field>
+						<mat-form-field class="col-4">
+							<input type="text" matInput placeholder="{{ 'iban' | translate }}"
+								formControlName="payment_stop_iban" name="payment_stop_iban" id="payment_stop_iban"
+								(keyup)="validatePaymentStopIBAN($event)" #paymentStopIban>
+						</mat-form-field>
+						<div class="col-4">
+							<mat-form-field class="field-full-width">
+								<input type="text" matInput placeholder="{{ 'bic' | translate }}"
+									formControlName="payment_stop_bic" name="payment_stop_bic" id="payment_stop_bic"
+									[(ngModel)]="paymentStopBic">
+							</mat-form-field>
+							<div *ngIf="!isValidPaymentStopIBAN && paymentStopIban.value !== ''"
+								style="padding-top: 10px;">
+								<p class="alert-danger" style="padding: 18px; border-radius: 3px;">
+									IBAN is invalid
+								</p>
+							</div>
+						</div>
+					</div>
+				</mat-card>
+			</div>
+
+		</div>
+	</div>
+</form>

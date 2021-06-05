@@ -1,0 +1,49 @@
+<form class="kt-form" id="invoiceFrm" [formGroup]="invoiceFrm" >
+  <div class="kt-portlet__body">
+    <div class="form-group row">
+      <div class="col-lg-6 mb-4">
+        <mat-card>
+			<mat-form-field class="col-lg-12">
+				<input type="text" matInput placeholder="{{ 'executive_director' | translate }}" formControlName="executive_director" name="executive_director" id="executive_director">
+			</mat-form-field>
+			<mat-form-field class="col-lg-6">
+				<input type="text" matInput placeholder="{{ 'commercial_register_number' | translate }}" formControlName="commercial_register_number" name="commercial_register_number" id="commercial_register_number">
+			</mat-form-field>
+			<mat-form-field class="col-lg-6">
+				<input type="text" matInput placeholder="{{ 'commercial_register' | translate }}" formControlName="commercial_register" name="commercial_register" id="commercial_register">
+			</mat-form-field>
+			<mat-form-field class="col-lg-12">
+				<input type="text" matInput placeholder="{{ 'complementary' | translate }}" formControlName="complementary" name="complementary" id="complementary">
+			</mat-form-field>
+			<mat-form-field class="col-lg-4">
+				<input type="text" matInput placeholder="{{ 'hra' | translate }}" formControlName="hra" name="hra" id="hra">
+			</mat-form-field>
+			<mat-form-field class="col-lg-4">
+				<input type="text" matInput placeholder="{{ 'ust_id' | translate }}" formControlName="ust_id" name="ust_id" id="ust_id">
+			</mat-form-field>
+			<mat-form-field class="col-lg-4">
+				<input type="text" matInput placeholder="{{ 'tax_number' | translate }}" formControlName="tax_number" name="tax_number" id="tax_number">
+			</mat-form-field>
+        </mat-card>
+
+      </div>
+      <div class="col-lg-6 mb-4">
+        <mat-card>
+			<mat-form-field class="col-lg-12">
+				<input type="text" matInput placeholder="{{ 'website' | translate }}" formControlName="website" name="website" id="website">
+			</mat-form-field>
+			<mat-form-field class="col-lg-12">
+				<input type="text" matInput onlyNumber placeholder="{{ 'logo_position' | translate }}" formControlName="logo_position" name="logo_position" id="logo_position">
+			</mat-form-field>
+			<div class="col-lg-12">
+				<label for="logo_file">{{ 'logo_file' | translate }}
+				</label>
+				<kt-file-upload formControlName="logo_file" ngDefaultControl name="logo_file" id="logo_file"></kt-file-upload>
+			</div>
+        </mat-card>
+
+      </div>
+
+    </div>
+  </div>
+</form>

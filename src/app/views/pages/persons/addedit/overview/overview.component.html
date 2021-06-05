@@ -1,0 +1,74 @@
+<div class="col-md-12">
+	<div class="col-md-12">
+		<form class="kt-form" autocomplete="off" id="personsFrm" [formGroup]="personsFrm">
+			<div class="kt-portlet__body">
+				<div class="form-group row">
+					<div class="col-sm-12 mb-4">
+						<mat-card>
+							<div class="row mt-3">
+								<mat-form-field class="col-6">
+									<mat-label>{{ 'type' | translate }}</mat-label>
+									<mat-select formControlName="type" name="type" id="type">
+										<mat-option *ngFor="let item of person_type_list" [value]="item.value">
+											{{item.name}}
+										</mat-option>
+									</mat-select>
+								</mat-form-field>
+							</div>
+							<div class="row">
+								<mat-form-field class="col-4">
+									<mat-label>{{ 'salutation' | translate }}</mat-label>
+									<mat-select formControlName="salutation" name="salutation" id="salutation">
+										<mat-option *ngFor="let item of salutationList" [value]="item.value">
+											{{item.name}}
+										</mat-option>
+									</mat-select>
+								</mat-form-field>
+								<mat-form-field class="col-4">
+									<input type="text" matInput placeholder="{{ 'firstName' | translate }}"
+										formControlName="first_name" name="first_name" id="first_name">
+								</mat-form-field>
+								<mat-form-field class="col-4">
+									<input type="text" matInput placeholder="{{ 'surname' | translate }}"
+										formControlName="surname" name="surname" id="surname">
+								</mat-form-field>
+							</div>
+							<div class="row">
+								<mat-form-field class="col-6">
+									<input type="text" matInput placeholder="{{ 'position' | translate }}"
+										formControlName="position" name="position" id="position">
+								</mat-form-field>
+								<mat-form-field class="col-6">
+									<input type="text" matInput placeholder="{{ 'department' | translate }}"
+										formControlName="department" name="department" id="department">
+								</mat-form-field>
+							</div>
+							<div class="row">
+								<mat-form-field class="col-6">
+									<input type="text" matInput onlyTelNumber placeholder="{{ 'phone' | translate }}"
+										formControlName="phone" name="phone" id="phone" (click)="changePhoneNumber($event)"
+										(blur)="emptyValue($event)">
+								</mat-form-field>
+								<mat-form-field class="col-6">
+									<input type="text" matInput onlyTelNumber placeholder="{{ 'mobileNumber' | translate }}"
+										formControlName="mobile_number" name="mobile_number" id="mobile_number"
+										(click)="changePhoneNumber($event)" (blur)="emptyValue($event)">
+								</mat-form-field>
+							</div>
+							<div class="row">
+								<mat-form-field class="col-6">
+									<input type="text" matInput placeholder="{{ 'fax' | translate }}" formControlName="fax"
+										name="fax" id="fax">
+								</mat-form-field>
+								<mat-form-field class="col-6">
+									<input type="text" matInput placeholder="{{ 'email' | translate }}"
+										formControlName="email" name="email" id="email">
+								</mat-form-field>
+							</div>
+						</mat-card>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

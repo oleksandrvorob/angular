@@ -1,0 +1,27 @@
+:host {
+	height: 100%;
+	margin: 0;
+
+	::ng-deep {
+		.mat-dialog-title {
+			font-weight: 400;
+		}
+		.mat-dialog-container {
+			padding: 16px 16px 12px;
+		}
+		.mat-dialog-actions {
+			padding: 0;
+			min-height: 0;
+		}
+		ngb-modal-backdrop{
+			z-index: 98!important;
+		}
+	
+		ngb-modal-window{
+			z-index: 99!important;
+		}
+	}
+}
+
+    
+

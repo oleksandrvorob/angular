@@ -1,0 +1,114 @@
+<form class="kt-form" autocomplete="off" id="overviewData" [formGroup]="overviewData">
+
+	<input type="hidden" name="companyId" formControlName="companyId">
+
+	<div class="kt-portlet__body">
+		<div class="form-group row">
+			<div class="col-lg-6 mb-4">
+				<mat-card>
+					<div class="row mt-3">
+						<mat-form-field class="col-6">
+							<input type="text" matInput placeholder="{{ 'company_number' | translate }}"
+								formControlName="company_number" name="company_number" id="company_number">
+						</mat-form-field>
+						<mat-form-field class="col-6">
+							<input type="text" matInput placeholder="{{ 'group' | translate }}" formControlName="group_name"
+								name="group_name" id="group_name">
+						</mat-form-field>
+					</div>
+					<div class="row">
+						<mat-form-field class="col-6">
+							<input type="text" matInput placeholder="{{ 'name1' | translate }}" formControlName="name1"
+								name="userName1" id="name1">
+						</mat-form-field>
+						<mat-form-field class="col-6">
+							<input type="text" matInput placeholder="{{ 'name2' | translate }}" formControlName="name2"
+								name="userName2" id="name2">
+						</mat-form-field>
+					</div>
+					<div class="row">
+						<mat-form-field class="col-4">
+							<input type="text" matInput onlyNumber placeholder="{{ 'zipcode' | translate }}"
+								formControlName="postcode" name="postcode" id="postcode" (keyup)="getCityName($event)">
+						</mat-form-field>
+						<mat-form-field class="col-8">
+							<input type="text" matInput placeholder="{{ 'street' | translate }}" formControlName="street"
+								name="street" id="street">
+						</mat-form-field>
+					</div>
+					<div class="row">
+						<mat-form-field class="col-6">
+							<input type="text" matInput onlyTelNumber placeholder="{{ 'phone1' | translate }}"
+								formControlName="phone1" name="phone1" id="phone1" (click)="changePhoneNumber($event)"
+								(blur)="emptyValue($event)">
+						</mat-form-field>
+						<mat-form-field class="col-6">
+							<input type="text" matInput onlyTelNumber placeholder="{{ 'phone2' | translate }}"
+								formControlName="phone2" name="phone2" id="phone2" (click)="changePhoneNumber($event)"
+								(blur)="emptyValue($event)">
+						</mat-form-field>
+					</div>
+					<div class="row">
+						<mat-form-field class="col-lg-12 col-md-6 col-sm-3 col-xs-3">
+							<input type="text" matInput placeholder="{{ 'fax' | translate }}" formControlName="fax" name="fax"
+								id="fax">
+						</mat-form-field>
+						<div class="col-lg-6 col-md-4 col-sm-6" style="display: flex;">
+							<mat-checkbox class="col-lg-4 col-md-4 col-sm-4" formControlName="ustr_mandatory" style="margin-top: 5px;" id="ustr_mandatory"
+								name="ustr_mandatory" (click)="changeuStrMandatory()">{{ 'vat_mandatory' | translate }}</mat-checkbox>
+							<mat-form-field class="col-lg-8 col-md-8 col-sm-4 ustr_mandatory_value">
+								<input type="text" matInput onlyNumber style="text-align: right;" formControlName="ustr_mandatory_value"
+									id="ustr_mandatory_value" max="100" maxlength="3" name="ustr_mandatory_value"
+									[attr.disabled]="ustr_mandatory_disabled == true ? true : null">
+							</mat-form-field>
+							<span style="margin-top: 5px">%</span>
+						</div>
+						<div class="col-lg-6 col-md-2 col-sm-4 pl-4" style="display: flex;">
+							<mat-form-field class="field-full-width">
+								<input type="text" matInput placeholder="{{ 'company_code' | translate }}" formControlName="code" name="code"
+									id="code">
+							</mat-form-field>
+						</div>
+					</div>
+				</mat-card>
+			</div>
+			<div class="col-lg-6 mb-4">
+				<mat-card>
+					<mat-form-field class="field-full-width">
+						<input type="text" matInput placeholder="{{ 'invoice_number' | translate }}"
+							formControlName="invoice_number" name="invoice_number" id="invoice_number">
+					</mat-form-field>
+					<div class="row">
+						<mat-form-field class="col-6">
+							<input type="text" matInput placeholder="{{ 'num_invoice' | translate }}" formControlName="num_invoice"
+								name="num_invoice" id="num_invoice">
+						</mat-form-field>
+						<mat-form-field class="col-6">
+							<input type="text" matInput placeholder="{{ 'num_r_branch' | translate }}" formControlName="num_r_branch"
+								name="num_r_branch" id="num_r_branch">
+						</mat-form-field>
+					</div>
+					<div class="row">
+						<mat-form-field class="col-6">
+							<input type="text" matInput placeholder="{{ 'ag_ltp_number' | translate }}"
+								formControlName="ag_ltp_number" name="ag_ltp_number" id="ag_ltp_number">
+						</mat-form-field>
+					</div>
+					<div class="row">
+						<mat-form-field class="col-6">
+							<input type="text" matInput placeholder="{{ 'last_set_position' | translate }}"
+								formControlName="last_set_position" name="last_set_position" id="last_set_position">
+						</mat-form-field>
+						<mat-form-field class="col-6">
+							<input type="text" matInput daterangepicker [options]="last_rech_date"
+								placeholder="{{ 'last_rech_date' | translate }}" formControlName="last_rech_date" name="last_rech_date"
+								id="last_rech_date" (selected)="last_rech_dateSelect($event)"
+								(applyDaterangepicker)="dateApplied($event)"
+								[errorStateMatcher]="matcher">
+						</mat-form-field>
+					</div>
+				</mat-card>
+			</div>
+		</div>
+	</div>
+</form>

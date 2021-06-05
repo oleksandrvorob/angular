@@ -1,0 +1,123 @@
+<mat-card>
+	<div class="mat-table__wrapper">
+		<div class="col-12">
+			<div class="row">
+				<div class="col-9">
+					<div class="row">
+						<div class="col-8"></div>
+						<div class="col-4">
+							<input type="text" name="" (input)="filterData($event)" class="form-control" placeholder="{{'search' | translate}}">
+						</div>
+					</div>
+				</div>
+				<div class="col-3">
+				</div>
+			</div>
+		</div>
+		<div class="clearfix"></div>
+		<div class="col-12" [ngClass]="{'norecord': contractorList.length ==0 }">
+			<div class="row">
+				<div class="col-3">
+					<table class="table table-striped" datatable [dtOptions]="contractorDTOptions">
+						<thead>
+							<tr>
+								<th scope="col" style="width: 50px;">{{'no' | translate}}</th>
+								<th scope="col">{{'name' | translate}}</th>
+							</tr>
+						</thead>
+						<tbody *ngIf="contractorList">
+							<tr *ngFor="let contractor of contractorList; index as i" (click)="selectContractor(contractor, i)" [class.active]="i == selectedRow">
+
+								<td>{{ contractor.contractor_number }}</td>
+								<td>{{ contractor.name }}</td>
+							</tr>
+						</tbody>
+						<tbody *ngIf="contractorList && contractorList.length === 0">
+							<tr>
+								<td colspan="2" class="text-center">{{ 'no_data_available' | translate }}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="col-6">
+					<table class="table table-striped" datatable [dtOptions]="invoiceDTOptions">
+						<thead>
+							<tr>
+								<th scope="col" style="width: 120px;">{{'invoice_number' | translate}}</th>
+								<th scope="col">{{'invoice_date' | translate}}</th>
+								<th scope="col">{{'amount' | translate}}</th>
+								<th scope="col">{{'pay' | translate}}</th>
+								<th scope="col">{{'gross' | translate}}</th>
+							</tr>
+						</thead>
+						<tbody *ngIf="invoiceList">
+							<tr *ngFor="let invoice of invoiceList; index as i" [class.active]="i == selectedInvoiceRow" (click)="selectInvoiceRow(i)">
+								<td>{{ invoice.invoice_no }}</td>
+								<td>{{ invoice.invoice_date }}</td>
+								<td>{{ invoice.invoice_net }}</td>
+								<td>{{ invoice.invoice_vat }}</td>
+								<td>{{ invoice.invoice_gross }}</td>
+							</tr>
+						</tbody>
+						<tbody *ngIf="invoiceList && invoiceList.length === 0">
+							<tr>
+								<td colspan="5" class="text-center">{{ 'no_data_available' | translate }}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="col-3" style="margin-top: 25px;">
+					<form class="kt-form" id="paymentFrm" [formGroup]="paymentFrm" autocomplete="off">
+						<mat-form-field>
+							<input type="text" matInput placeholder="{{ 'paid_amount' | translate }}" formControlName="paid_amount" name="paid_amount" id="paid_amount">
+						</mat-form-field>
+						<mat-form-field class="field-full-width">
+							<input type="text" matInput placeholder="{{ 'reference1' | translate }}" formControlName="reference1" name="reference1" id="reference1">
+						</mat-form-field>
+						<mat-form-field class="field-full-width">
+							<input type="text" matInput placeholder="{{ 'reference2' | translate }}" formControlName="reference2" name="reference2" id="reference2">
+						</mat-form-field>
+						<mat-form-field class="field-full-width">
+							<input type="text" matInput placeholder="{{ 'reference3' | translate }}" formControlName="reference3" name="reference3" id="reference3">
+						</mat-form-field>
+						<mat-form-field>
+							<mat-label>{{ 'company' | translate }}</mat-label>
+							<mat-select formControlName="company" name="company" id="company">
+								<mat-option *ngFor="let company of companyList" [value]="company.name1">
+									{{company.name1}}
+								</mat-option>
+							</mat-select>
+						</mat-form-field>
+						<div class="mb-2" style="margin-top: 20px; padding: 0px 1px;">
+							<button type="submit" (click)="startPayment()" class="btn btn-success">{{'start_payment' | translate }}</button>
+						</div>
+						<mat-form-field class="field-full-width" style="margin-top: 20px;">
+							<input type="text" matInput placeholder="{{ 'reference_value' | translate }}" formControlName="reference_value" name="reference_value" id="reference_value">
+						</mat-form-field>
+
+							<mat-form-field>
+								<input type="text" matInput placeholder="{{ 'total_amount' | translate }}" formControlName="total_amount" name="total_amount" id="total_amount">
+							</mat-form-field>
+							<div class="payment_table">
+								<table>
+									<thead>
+										<tr>
+											<th>Komplett bezahlt</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>1. Hälfte bezahlt</td>
+										</tr>
+										<tr>
+											<td>2. Hälfte bezahlt</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</mat-card>

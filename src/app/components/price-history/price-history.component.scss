@@ -1,0 +1,74 @@
+.buttonsContainer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.buttonsGroup {
+    button {
+        margin-left: 8px;
+        &:first-child {
+            margin: 0;
+        }
+    }
+}
+
+.cdk-overlay-pane {
+    max-width: 80vw;
+    max-height: 80vh;
+    pointer-events: auto;
+    width: auto;
+    height: auto;
+    position: static;
+    overflow: auto;
+}
+
+    table {
+        th{
+            color: #fff!important;
+            border-bottom: unset!important;
+        }
+        td {
+            color: #fff!important;
+            padding: 4px 8px;
+			border-top: unset!important;
+			vertical-align: middle;
+            .mat-datepicker-toggle{
+                color: #fff!important;
+            }
+
+		}
+		&.table-striped {
+			tbody {
+				tr {
+					&:nth-of-type(odd) {
+						background-color: rgb(41, 44, 48) !important;
+					}
+				}
+			}
+		}
+    }
+
+
+:host {
+	::ng-deep {
+        .mat-dialog-container {
+            padding: 8px 8px 16px !important;
+        }
+        .mat-form-field {
+            .mat-form-field-infix {
+                width: 90px;
+            }
+            .mat-form-field-wrapper {
+                padding-bottom: 0;
+                .mat-form-field-underline {
+                    bottom: 0;
+                }
+            }
+            .mat-form-field-subscript-wrapper {
+                top: unset;
+            }
+        }
+
+
+	}
+}

@@ -1,0 +1,66 @@
+<!-- begin:: Content Head -->
+<div class="kt-subheader kt-grid__item" [hidden]="subheaderService.disabled$ | async" id="kt_subheader">
+	<div class="kt-subheader__main">
+		<h3 *ngIf="title" class="kt-subheader__title">{{title}}</h3>
+		<span class="kt-subheader__separator kt-subheader__separator--v"></span>
+		<span *ngIf="desc" class="kt-subheader__desc">{{desc}}</span>
+		<a href="javascript:;" class="btn btn-label-primary btn-bold btn-icon-h">
+			Add New
+		</a>
+	</div>
+	<div class="kt-subheader__toolbar">
+		<div class="kt-subheader__wrapper">
+			<div ngbDropdown [placement]="'bottom-right'" class="dropdown dropdown-inline" data-placement="left">
+				<a ngbDropdownToggle href="javascript:;" class="btn kt-subheader__btn-daterange"
+					id="kt_dashboard_daterangepicker" data-placement="left" ngbTooltip="Select dashboard daterange">
+					<span class="kt-subheader__btn-daterange-title"
+						id="kt_dashboard_daterangepicker_title">Today</span>&nbsp;
+					<span class="kt-subheader__btn-daterange-date"
+						id="kt_dashboard_daterangepicker_date">{{today | date:'MMM dd'}}</span>
+					<i class="flaticon2-calendar-1"></i>
+				</a>
+				<div ngbDropdownMenu class="dropdown-menu dropdown-menu-right">
+					<a href="javascript:;" class="dropdown-item">Today</a>
+					<a href="javascript:;" class="dropdown-item">Yesterday</a>
+					<a href="javascript:;" class="dropdown-item">Last 7 Days</a>
+					<a href="javascript:;" class="dropdown-item">Last 30 Days</a>
+					<a href="javascript:;" class="dropdown-item">This Month</a>
+					<a href="javascript:;" class="dropdown-item">Last Month</a>
+					<a href="javascript:;" class="dropdown-item">Yesterday</a>
+					<a href="javascript:;" class="dropdown-item">Custom Range</a>
+				</div>
+			</div>
+
+			<a href="javascript:;" class="btn kt-subheader__btn-primary btn-icon">
+				<i class="flaticon2-file"></i>
+			</a>
+
+			<a href="javascript:;" class="btn kt-subheader__btn-primary btn-icon">
+				<i class="flaticon-download-1"></i>
+			</a>
+
+			<a href="javascript:;" class="btn kt-subheader__btn-primary btn-icon">
+				<i class="flaticon2-fax"></i>
+			</a>
+
+			<a href="javascript:;" class="btn kt-subheader__btn-primary btn-icon">
+				<i class="flaticon2-settings"></i>
+			</a>
+
+			<div ngbDropdown [placement]="'bottom-right'" class="dropdown dropdown-inline" data-placement="left"
+				ngbTooltip="Quick actions">
+				<a ngbDropdownToggle href="javascript:;" class="btn btn-brand btn-icon">
+					<i class="flaticon2-plus"></i>
+				</a>
+				<div ngbDropdownMenu class="dropdown-menu dropdown-menu-right">
+					<a class="dropdown-item" href="javascript:;"><i class="la la-plus"></i> New Report</a>
+					<a class="dropdown-item" href="javascript:;"><i class="la la-user"></i> Add Customer</a>
+					<a class="dropdown-item" href="javascript:;"><i class="la la-cloud-download"></i> New Download</a>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item" href="javascript:;"><i class="la la-cog"></i> Settings</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- end:: Content Head -->

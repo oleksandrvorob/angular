@@ -1,0 +1,171 @@
+<form class="kt-form kt-form--label-right" id="toursFrm" [formGroup]="tourFrm" autocomplete="off">
+  <input type="hidden" name="orderId" formControlName="orderId">
+  <mat-card-content>
+      <mat-tab-group class="demo-tab-group">
+          <mat-tab label="{{ 'overview' | translate }}">
+              <div class="col-md-12">
+                  <div class="kt-portlet__body">
+                      <div class="form-group row">
+                        <div class="col-sm-12 mb-4">
+                            <mat-card>
+                              <div class="row">
+                        <div class="col-md-6 mb-2">
+                            <label for="order_number">{{ 'order_number' | translate }}
+                            </label>
+                            <input type="text" formControlName="order_number"  class="form-control" name="order_number" id="order_number" disabled>
+                          </div>
+
+                          <div class="col-md-6 mb-2">
+                            <label for="description">{{ 'description' | translate }}
+                            </label>
+                            <input type="text" class="form-control" formControlName="description" name="description" id="description">
+                          </div>
+                          <div class="col-md-6 mb-2">
+                            <label for="customer">{{ 'customer' | translate }}
+                            </label>
+                            <input type="text" formControlName="customer" class="form-control" name="customer" id="customer">
+                          </div>
+                          <div class="col-md-6 mb-2">
+                            <label for="client_price">{{ 'client_price' | translate }}
+                            </label>
+                            <input type="text" currencyMask class="form-control" formControlName="client_price" name="client_price" id="client_price" [(ngModel)]="cli_pri">
+                          </div>
+                          <div class="col-md-6 mb-2">
+                            <label for="price_basis">{{ 'price_basis' | translate }}
+                            </label>
+                            <select class="form-control" formControlName="price_basis" name="price_basis" id="price_basis">
+                              <option *ngFor="let item of priceBasisList"  [value]="item.value">{{item.name}}</option>
+                            </select>
+
+                          </div>
+
+                          <div class="col-md-6 mb-2">
+                            <label for="day">{{ 'day' | translate }}
+                            </label>
+
+							<kt-checkbox-group formControlName="day" ngDefaultControl class="checkbox-group" name="day" id="day">
+								<kt-checkbox *ngFor="let day of daysOfWeek" value="{{day.name}}">{{day.name}}</kt-checkbox>
+							</kt-checkbox-group>
+                          </div>
+                          <div class="col-md-6 mb-2">
+                            <label for="valid_from">{{ 'valid_from' | translate }}
+                            </label>
+                            <input type="text" class="form-control" daterangepicker [options]="valid_from" (selected)="valid_fromSelect($event)"  formControlName="valid_from" name="valid_from" id="valid_from">
+                          </div>
+						  <div class="col-md-6 mb-2">
+                            <label for="billing">{{ 'billing' | translate }}
+                            </label>
+							<div class="billing">
+								<label for="once_per_billing">{{ 'once_per_billing' | translate }}
+                            	</label>
+								<input type="checkbox" formControlName="once_per_billing" class="form-control" name="once_per_billing" id="once_per_billing"/>
+							</div>
+                          </div>
+                          <div class="col-md-6 mb-2">
+                            <label for="date_of_expiry">{{ 'date_of_expiry' | translate }}
+                            </label>
+                            <input type="text" class="form-control" daterangepicker [options]="date_of_expiryPicker" (selected)="date_of_expiryPickerSelect($event)"   formControlName="date_of_expiry" name="date_of_expiry" id="date_of_expiry">
+                          </div>
+						  <div class="col-md-6 mb-2">
+                            <label for="invoice">{{ 'invoice' | translate }}
+                            </label>
+							<div class="invoice">
+								<label for="no_customer_invoice">{{ 'no_customer_invoice' | translate }}
+                            	</label>
+								<input type="checkbox" formControlName="no_customer_invoice" class="form-control" name="no_customer_invoice" id="no_customer_invoice"/>
+							</div>
+                          </div>
+                          <div class="col-md-6 mb-2">
+                            <label for="order_type">{{ 'order_type' | translate }}
+                            </label>
+                            <select class="form-control" formControlName="order_type" name="order_type" id="order_type">
+                              <option *ngFor="let item of orderTypeList"  [value]="item.value">{{item.name}}</option>
+                            </select>
+
+                          </div>
+                              </div>
+                            </mat-card>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+          </mat-tab>
+          <mat-tab label="{{ 'service_partner' | translate }}">
+              <div class="col-md-12">
+                  <div class="kt-portlet__body">
+                      <div class="form-group row">
+                        <div class="col-sm-12 mb-4">
+                            <mat-card>
+                              <div class="row">
+                                  <div class="col-md-6 mb-2">
+                                      <label for="contractor">{{ 'contractor' | translate }}
+                                      </label>
+                                      <input type="text" class="form-control" formControlName="contractor" name="contractor" id="contractor">
+                                    </div>
+
+                                    <div class="col-md-6 mb-2">
+                                      <label for="contractor_valid_from">{{ 'valid_from' | translate }}
+                                      </label>
+                                      <input type="text" class="form-control" formControlName="contractor_valid_from" name="contractor_valid_from" id="contractor_valid_from" daterangepicker [options]="contractor_valid_from" (selected)="contractor_valid_fromPickerSelect($event)" >
+                                    </div>
+
+                                    <div class="col-md-6 mb-2">
+                                      <label for="contractor_date_of_expiry">{{ 'date_of_expiry' | translate }}
+                                      </label>
+                                      <input type="text" class="form-control" formControlName="contractor_date_of_expiry" name="contractor_date_of_expiry" id="contractor_date_of_expiry" daterangepicker [options]="contractor_date_of_expiry" (selected)="contractor_date_of_expiryPickerSelect($event)" >
+                                    </div>
+
+                                    <div class="col-md-6 mb-2">
+                                      <label for="contractor_price_week">{{ 'contractor_price_week' | translate }}
+                                      </label>
+                                      <input type="text" currencyMask class="form-control" formControlName="contractor_price_week" name="contractor_price_week" id="contractor_price_week" [(ngModel)]="con_pri_week">
+                                    </div>
+
+                                    <div class="col-md-6 mb-2">
+                                      <label for="contractor_price_weeken">{{ 'contractor_price_weeken' | translate }}
+                                      </label>
+                                      <input type="text" currencyMask class="form-control" formControlName="contractor_price_weekend" name="contractor_price_weeken" id="contractor_price_weeken" [(ngModel)]="con_pri_weekend">
+                                    </div>
+                              </div>
+                            </mat-card>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+            </mat-tab>
+            <mat-tab label="{{ 'comments' | translate }}">
+                <div class="col-md-12">
+                    <div class="kt-portlet__body">
+                        <div class="form-group row">
+                          <div class="col-sm-12 mb-4">
+                              <mat-card>
+                                  <div class="col-md-12 mb-2">
+                                      <label for="type">{{ 'comments' | translate }}
+                                      </label>
+                                      <textarea class="form-control" formControlName="comment"  style="min-height: 250px;" placeholder="{{ 'comments' | translate }}"  ></textarea>
+                                  </div>
+                                </mat-card>
+                          </div>
+                      </div>
+                    </div>
+
+                  </div>
+
+            </mat-tab>
+        </mat-tab-group>
+
+        <div class="kt-portlet__foot">
+            <div class=" p-0">
+              <div class="row" style="padding-top: 20px;">
+                <div class="col-lg-12 text-center">
+					<button type="button" class="btn btn-danger m-5" (click)="cancel()" style="padding: 10px 30px;">{{'cancel' | translate}}</button>
+                  <button type="submit" class="btn btn-success m-5" (click)="submitFrm()" style="padding: 10px 30px;" [disabled]="isDisabled">{{ 'save' | translate }}</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+    </mat-card-content>
+
+  </form>

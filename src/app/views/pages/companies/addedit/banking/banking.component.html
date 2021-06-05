@@ -1,0 +1,91 @@
+<form class="kt-form" id="bankingFrm" [formGroup]="bankingFrm">
+	<div class="kt-portlet__body" ktClickCatcher #flagDiv="tbDropdown">
+		<div class="form-group row">
+			<div class="col-lg-6 mb-4">
+				<mat-card>
+					<mat-form-field class="col-md-12 col-xl-12">
+						<input type="text" matInput placeholder="{{ 'bank' | translate }}" formControlName="bank_name"
+							name="bank_name" id="bank_name" [(ngModel)]="bankName">
+						<div *ngIf="flagDiv.isShowBankDropdownTable" class="dropdown"
+							(click)="onClickBankTable($event)">
+							<table class="table table-striped" datatable [dtOptions]="dtBankOptions">
+								<thead>
+									<tr>
+										<th scope="col">{{'bank_no' | translate}}</th>
+										<th scope="col">{{'bank_name' | translate}}</th>
+										<th scope="col">{{'account_no' | translate}}</th>
+										<th scope="col">{{'bank_code' | translate}}</th>
+										<th scope="col">{{'iban' | translate}}</th>
+										<th scope="col">{{'bic' | translate}}</th>
+										<th scope="col" class="text-center nosort">
+											{{'action' | translate}}</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr *ngFor="let bank of bankList; index as i" (click)="selectBank(bank)"
+										id="bank_Item">
+										<td>{{ bank.bank_number }}</td>
+										<td>{{ bank.name }}</td>
+										<td>{{ bank.account_number }}</td>
+										<td>{{ bank.bank_code }}</td>
+										<td>{{ bank.iban }}</td>
+										<td>{{ bank.bic }}</td>
+										<td class="text-center" nowrap>
+											<button mat-icon-button color="primary"
+												matTooltip="{{'add_contcat_person' | translate}}">
+												<mat-icon>add_box</mat-icon>
+											</button>
+										</td>
+									</tr>
+								</tbody>
+								<tbody *ngIf="bankList && bankList.length === 0">
+									<tr>
+										<td colspan="7" class="text-center">{{ 'no_data_available' | translate }}
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</mat-form-field>
+
+					<!-- <mat-form-field class="col-md-12 col-xl-12">
+						<input type="text" matInput onlyNumber placeholder="{{ 'account' | translate }}"
+							formControlName="account" name="account" id="account">
+					</mat-form-field> -->
+				</mat-card>
+			</div>
+			<div class="col-lg-6 mb-4">
+				<mat-card>
+					<mat-form-field class="col-lg-6">
+						<input type="text" matInput placeholder="{{ 'dtaus_no' | translate }}"
+							formControlName="dtaus_no" name="dtaus_no" id="dtaus_no">
+					</mat-form-field>
+					<mat-form-field class="col-lg-6">
+						<input type="text" matInput placeholder="{{ 'dtaus_path' | translate }}"
+							formControlName="dtaus_path" name="dtaus_path" id="dtaus_path">
+					</mat-form-field>
+					<mat-form-field class="col-lg-4">
+						<input type="text" matInput placeholder="{{ 'sepa_no' | translate }}" formControlName="sepa_no"
+							name="sepa_no" id="sepa_no">
+					</mat-form-field>
+					<mat-form-field class="col-lg-4">
+						<input type="text" matInput placeholder="{{ 'sepa' | translate }}" formControlName="sepa"
+							name="sepa" id="sepa">
+					</mat-form-field>
+					<mat-form-field class="col-lg-4">
+						<input type="text" matInput placeholder="{{ 'sepa_path' | translate }}"
+							formControlName="sepa_path" name="sepa_path" id="sepa_path">
+					</mat-form-field>
+					<mat-form-field class="col-lg-6">
+						<input type="text" matInput placeholder="{{ 'usage' | translate }}" formControlName="usage"
+							name="usage" id="usage">
+					</mat-form-field>
+					<mat-form-field class="col-lg-6">
+						<input type="text" matInput placeholder="{{ 'converter' | translate }}"
+							formControlName="converter" name="converter" id="converter">
+					</mat-form-field>
+				</mat-card>
+			</div>
+		</div>
+	</div>
+</form>

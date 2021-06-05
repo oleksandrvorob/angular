@@ -1,0 +1,570 @@
+/* You can add global styles to this file, and also import other style files */
+@import "assets/vendors/global/vendors.bundle.css";
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "~highlight.js/styles/googlecode.css";
+@import "~@angular/material/theming";
+
+@include mat-core();
+
+// import our custom theme
+@import "dark-theme.scss";
+
+// specify theme class eg: <body class="my-theme"> ... </body>
+.dark-theme {
+	// use our theme with angular-material-theme mixin
+	@include angular-material-theme($dark-theme);
+	.dropdown-menu {
+		background-color: #282f48;
+		.kt-nav__link--active {
+			background-color: #282f48;
+		}
+		.kt-nav__item {
+			&:hover {
+				background-color: #282f48;
+				.kt-nav__link {
+					background-color: #8991ad !important;
+					.kt-nav__link-text {
+						color: #fff !important;
+					}
+				}
+			}
+		}
+	}
+
+	.mat-card {
+		background: #181825 !important;
+		color: #fff !important;
+		border: 2px solid #2e2e49;
+	}
+	.dt-button {
+		padding: 1em 2em !important;
+		color: white;
+		border-radius: 5px !important;
+		background-color: rgb(29, 163, 85, 0.3) !important;
+		background-image: unset !important;
+		border: unset !important;
+		&:hover {
+			background-color: rgb(29, 163, 85, 1) !important;
+		}
+	}
+
+	//start data table search input field
+	input {
+		&.form-control {
+			background-color: #181825 !important;
+			border-color: unset !important;
+		}
+	}
+	.form-control {
+		background-color: #ffffffc7 !important;
+	}
+	// end table search input field
+
+	.mat-form-field {
+		margin-top: -10px;
+		.mat-form-field-label {
+			color: #fff !important;
+		}
+	}
+	.mat-form-field-appearance-legacy {
+		.mat-form-field-underline {
+			background-color: #454573 !important;
+		}
+	}
+	.mat-form-field-outline {
+		color: rgb(206, 202, 202) !important;
+		background-color: #181825 !important;
+		border-radius: 5px !important;
+		border: 1px solid #2e2e49;
+	}
+	.demo-tab-group {
+		border: 1px solid #13131d;
+
+		.mat-tab-header {
+			border-bottom: 2px solid #454573;
+			.mat-tab-nav-bar {
+				border-bottom: 2px solid #454573;
+			}
+		}
+		.mat-tab-body-content {
+			height: auto !important ;
+		}
+
+		.mat-tab-body {
+			background: #13131d !important;
+		}
+
+		.mat-tab-labels {
+			color: white;
+			background: #13131d;
+		}
+		.mat-tab-label,
+		.mat-tab-link {
+			color: white;
+		}
+	}
+
+	.mat-checkbox-frame {
+		border-color: rgb(206, 202, 202) !important;
+	}
+
+	.mat-form-field-appearance-outline {
+		.mat-form-field-outline-start {
+			border-color: #181825 !important;
+		}
+		.mat-form-field-outline-gap {
+			border-color: #181825 !important;
+		}
+		.mat-form-field-outline-end {
+			border-color: #181825 !important;
+		}
+	}
+
+	input::-webkit-input-placeholder {
+		color: rgba(255, 255, 255, 0.7) !important;
+	}
+
+	input:-moz-placeholder {
+		/* Firefox 18- */
+		color: rgba(255, 255, 255, 0.7) !important;
+	}
+
+	input::-moz-placeholder {
+		/* Firefox 19+ */
+		color: rgba(255, 255, 255, 0.7) !important;
+	}
+	textarea::-webkit-input-placeholder {
+		color: rgba(255, 255, 255, 0.7) !important;
+	}
+
+	textarea:-moz-placeholder {
+		/* Firefox 18- */
+		color: rgba(255, 255, 255, 0.7) !important;
+	}
+
+	textarea::-moz-placeholder {
+		/* Firefox 19+ */
+		color: rgba(255, 255, 255, 0.7) !important;
+	}
+	.modal-dialog {
+		overflow-y: hidden;
+		.modal-content {
+			background: #13131d !important;
+			border: 2px solid #2e2e49 !important;
+
+			color: white;
+			.modal-header {
+				border-bottom: 2px solid #2e2e49 !important;
+				.modal-title {
+					color: #fff !important;
+				}
+			}
+			.mat-tab-body {
+				overflow-y: unset;
+			}
+
+			.mat-tab-body-wrapper {
+				overflow-y: unset !important;
+			}
+		}
+	}
+
+	.btn-outline-brand {
+		color: #0277bd;
+		border-color: #0277bd;
+		&:hover {
+			color: #fff;
+			background-color: #0277bd;
+			border-color: #0277bd;
+		}
+	}
+
+	&.custom-modalbox {
+		.mat-dialog-container {
+			background: #282f48 !important;
+			color: #fff;
+		}
+		.mat-dialog-actions {
+			justify-content: space-around;
+		}
+	}
+
+	.kt-menu__nav {
+		.kt-menu__item {
+			.l-icon {
+				width: 25px;
+				height: 25px;
+				display: inline-block;
+				-webkit-mask-size: cover;
+				mask-size: cover;
+				background-color: #0277bd;
+				margin-right: 10px;
+			}
+			&.kt-menu__item--active {
+				.l-icon {
+					background-color: #fff;
+				}
+			}
+
+			.icon-client {
+				-webkit-mask: url(./assets/media/icons/Clients.svg) no-repeat 50% 50%;
+				mask: url(./assets/media/icons/Clients.svg) no-repeat 50% 50%;
+				-webkit-mask-size: 25px 25px;
+				mask-size: 25px 25px;
+			}
+
+			.icon-contractor {
+				-webkit-mask: url(./assets/media/icons/Contractors.svg) no-repeat 50% 50%;
+				mask: url(./assets/media/icons/Contractors.svg) no-repeat 50% 50%;
+			}
+			.icon-company {
+				-webkit-mask: url(./assets/media/icons/companies.svg) no-repeat 50% 50%;
+				mask: url(./assets/media/icons/companies.svg) no-repeat 50% 50%;
+			}
+			.icon-article {
+				-webkit-mask: url(./assets/media/icons/Articles.svg) no-repeat 50% 50%;
+				mask: url(./assets/media/icons/Articles.svg) no-repeat 50% 50%;
+
+				-webkit-mask-size: 25px 25px;
+				mask-size: 25px 25px;
+			}
+			.icon-person {
+				-webkit-mask: url(./assets/media/icons/Persons.svg) no-repeat 50% 50%;
+				mask: url(./assets/media/icons/Persons.svg) no-repeat 50% 50%;
+			}
+			.icon-tour {
+				-webkit-mask: url(./assets/media/icons/Tours.svg) no-repeat 50% 50%;
+				mask: url(./assets/media/icons/Tours.svg) no-repeat 50% 50%;
+			}
+
+			.icon-bill {
+				-webkit-mask: url(./assets/media/icons/bill_run.svg) no-repeat 50% 50%;
+				mask: url(./assets/media/icons/bill_run.svg) no-repeat 50% 50%;
+
+				-webkit-mask-size: 25px 25px;
+				mask-size: 25px 25px;
+			}
+			.icon-payment {
+				-webkit-mask: url(./assets/media/icons/payment_run.svg) no-repeat 50% 50%;
+				mask: url(./assets/media/icons/payment_run.svg) no-repeat 50% 50%;
+			}
+			.icon-account {
+				-webkit-mask: url(./assets/media/icons/account_books.svg) no-repeat 50% 50%;
+				mask: url(./assets/media/icons/account_books.svg) no-repeat 50% 50%;
+
+				-webkit-mask-size: 25px 25px;
+				mask-size: 25px 25px;
+			}
+
+			.icon-system {
+				-webkit-mask: url(./assets/media/icons/system-information.svg) no-repeat 50%
+					50%;
+				mask: url(./assets/media/icons/system-information.svg) no-repeat 50% 50%;
+
+				-webkit-mask-size: 25px 25px;
+				mask-size: 25px 25px;
+			}
+
+			.icon-position {
+				-webkit-mask: url(./assets/media/icons/svg/General/Clip.svg) no-repeat 50%
+					50%;
+				mask: url(./assets/media/icons/svg/General/Clip.svg) no-repeat 50% 50%;
+			}
+
+			.icon-user {
+				-webkit-mask: url(./assets/media/icons/svg/General/User.svg) no-repeat 50%
+					50%;
+				mask: url(./assets/media/icons/svg/General/User.svg) no-repeat 50% 50%;
+			}
+
+			.icon-bank {
+				-webkit-mask: url(./assets/media/icons/banking.svg) no-repeat 50% 50%;
+				mask: url(./assets/media/icons/banking.svg) no-repeat 50% 50%;
+			}
+
+			.icon-maps {
+				-webkit-mask: url(./assets/media/icons/google_maps.svg) no-repeat 50% 50%;
+				mask: url(./assets/media/icons/google_maps.svg) no-repeat 50% 50%;
+			}
+		}
+	}
+
+	.btn-primary {
+		color: #fff;
+		background-color: #0484ce !important;
+		border-color: #0484ce !important;
+		&:hover {
+			background-color: #0277bd !important;
+			border-color: #0277bd !important;
+		}
+	}
+
+	//start datatable css
+	.dataTables_wrapper {
+		.dataTables_scrollBody {
+			background: transparent !important;
+		}
+
+		.no-footer {
+			border-top: unset !important;
+		}
+		.norecord {
+			.dataTables_processing {
+				top: 75% !important;
+				padding: 0.5em 0 !important;
+			}
+		}
+
+		.dataTables_paginate {
+			.paginate_button {
+				padding: 0.2em 0.2em !important;
+				margin-left: 0 !important;
+				&:hover {
+					color: white !important;
+					border: 0px !important;
+					background-color: #fff !important;
+					background: none !important;
+				}
+			}
+		}
+
+		.table {
+			&.dataTable {
+				thead {
+					th {
+						vertical-align: middle !important;
+						border-top: unset !important;
+						&.sorting {
+							background-image: none !important;
+						}
+					}
+
+					.sorting_asc {
+						background-image: none !important;
+					}
+
+					.sorting_desc {
+						background-image: none !important;
+					}
+				}
+				tbody {
+					tr {
+						background-color: rgb(36, 36, 46) !important;
+						border-top: unset !important;
+						td {
+							vertical-align: middle !important;
+							color: rgb(206, 202, 202) !important;
+							padding: 0px 10px;
+							border-top: unset !important;
+							.mat-icon-button {
+								height: 30px;
+								line-height: 20px;
+							}
+						}
+					}
+				}
+
+				&.table-striped {
+					tbody {
+						tr {
+							&:nth-of-type(odd) {
+								background-color: rgb(41, 44, 48) !important;
+							}
+							&.active {
+								background-color: #0288d1 !important;
+							}
+						}
+					}
+				}
+			}
+		}
+		//end datatable css
+	}
+
+	.dropdown {
+		border: 1px solid #282f48 !important;
+		background-color: #282f48 !important;
+
+		table {
+			td {
+				padding: 8px 12px!important;
+			}
+		}
+		&.right-align-table {
+			right: 0px;
+			margin-right: 0px;
+		}
+	}
+
+	mat-datepicker-content {
+		background-color: #282f48 !important;
+		color: #fff !important;
+		.mat-calendar-body-cell-content {
+			color: #fff !important;
+		}
+		th {
+			color: #fff !important;
+		}
+		td {
+			color: #fff !important;
+		}
+		.mat-calendar-arrow {
+			color: #fff !important;
+			border-top-color: #fff !important;
+			border-bottom-color: #fff !important;
+		}
+		.mat-calendar-previous-button {
+			color: #fff !important;
+		}
+		.mat-calendar-next-button {
+			color: #fff !important;
+		}
+	}
+}
+
+//start gobal css for dark-theme
+.mat-select {
+	.mat-select-value {
+		color: rgb(206, 202, 202) !important;
+	}
+	.mat-select-arrow {
+		color: rgb(206, 202, 202) !important;
+	}
+	.mat-select-placeholder {
+		color: rgb(206, 202, 202) !important;
+	}
+}
+.mat-select-panel {
+	background: #282f48 !important;
+	color: white;
+	.mat-option {
+		color: white !important;
+		&.mat-active {
+			color: white !important;
+		}
+		&:hover{
+			background-color: #8991ad!important;
+		}
+	}
+}
+
+// hide bootstrap dropdown arrow globally
+.dropdown-toggle::after {
+	display: none !important;
+}
+
+.mat-table__wrapper--dashboard .mat-table {
+	min-width: 600px !important;
+	width: 100% !important;
+}
+
+@media (min-width: 1025px) {
+	.kt-header--fixed.kt-subheader--fixed.kt-subheader--enabled .kt-wrapper {
+		&#kt_wrapper {
+			padding-top: 65px;
+		}
+	}
+}
+
+// global css, not limited to dark-theme
+//green scrollbar for chrome
+::-webkit-scrollbar {
+	width: 5px;
+}
+
+::-webkit-scrollbar-track {
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-webkit-appearance: none;
+	box-shadow: inset 0 0 5px 5px #13131d;
+	-moz-box-shadow: inset 0 0 5px 5px #13131d;
+	-webkit-box-shadow: inset 0 0 5px 5px #13131d;
+}
+
+::-webkit-scrollbar-thumb {
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-webkit-appearance: none;
+	box-shadow: inset 0 0 5px 5px #282f48;
+	-moz-box-shadow: inset 0 0 5px 5px #282f48;
+	-webkit-box-shadow: inset 0 0 5px 5px #282f48;
+}
+
+.position-static {
+	position: static;
+}
+
+.validateFrm {
+	input {
+		&.ng-invalid {
+			border: 1px solid red;
+		}
+	}
+	textarea {
+		&.ng-invalid {
+			border: 1px solid red;
+		}
+	}
+	select {
+		&.ng-invalid {
+			border: 1px solid red;
+		}
+	}
+}
+
+.modal-open {
+	height: 100vh !important;
+	overflow-y: hidden !important;
+}
+
+.hidden-table {
+	display: none !important;
+}
+
+.view-inactive {
+	position: relative;
+	float: right;
+	top: 40px;
+	z-index: 1;
+}
+
+.field-full-width {
+	width: 100%;
+}
+
+.dataTables_wrapper {
+	.dataTables_empty {
+		display: none;
+	}
+	thead {
+		th {
+			&.sorting {
+				background-image: none !important;
+			}
+		}
+	}
+}
+
+.m-t-10 {
+	margin-top: 10px;
+}
+
+.m-t-5 {
+	margin-top: 5px;
+}
+
+.m-l-10 {
+	margin-left: 10px !important;
+}
+
+.p-0 {
+	padding: 0px !important;
+}
+
+.p-tb-4 {
+	padding: 1.5rem 0rem !important;
+}
+
+// useless

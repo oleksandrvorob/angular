@@ -1,0 +1,192 @@
+<div class="col-md-12" style="padding-bottom: 15px;">
+
+	<mat-card>
+		<div class="row">
+			<div class="col-md-12">
+				<button mat-raised-button color="primary" (click)="addOrder(content)">{{'add_order' | translate }}</button>
+			</div>
+			<div class="col-md-12">
+				<table class="table table-striped" datatable [dtOptions]="dtOptions">
+					<thead>
+						<tr>
+							<th scope="col">{{'company' | translate}}</th>
+							<th scope="col">{{'order_number' | translate}}</th>
+							<th scope="col">{{'description' | translate}}</th>
+							<th scope="col">{{'client_number' | translate}}</th>
+							<th scope="col">{{'client_name' | translate}}</th>
+							<th scope="col">{{'client_city' | translate}}</th>
+							<th scope="col">{{'contractor_number' | translate}}</th>
+							<th scope="col">{{'contractor_name' | translate}}</th>
+							<th scope="col">{{'contractor_price' | translate}}</th>
+							<th scope="col">
+								{{'client_price' | translate}}
+							</th>
+							<th scope="col">{{'manager' | translate}}</th>
+							<th scope="col" class="text-center nosort">{{'action' | translate}}</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr *ngFor="let route of tourList; index as i">
+							<td>{{ route.company_name }}</td>
+							<td>{{ route.order_number }}</td>
+							<td>{{ route.description }}</td>
+							<td>{{ route.client_number }}</td>
+							<td>{{ route.client_name }}</td>
+							<td>{{ route.zipcode }} {{ route.client_city }}</td>
+							<td>{{ route.contractor_number }}</td>
+							<td>{{ route.contractor_name }}</td>
+							<td>{{ route.contractor_price }}</td>
+							<td>{{ route.client_price }}</td>
+							<td>testManager</td>
+							<td>
+								<button mat-icon-button (click)="deleteClientOrder(route.clients_orderId , route.ordersId)" color="warn"
+									matTooltip="{{'delete_client_order' | translate }}" type="button">
+									<mat-icon>delete</mat-icon>
+								</button>&nbsp;
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</mat-card>
+
+</div>
+
+<ng-template #content let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title">{{'orders' | translate }}</h4>
+		<button type="button" class="close" aria-label="Close" (click)="modalClose()">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	<div class="modal-body" ktClickCatcher #flagDiv="tbDropdown">
+		<mat-tab-group class="demo-tab-group">
+			<mat-tab label="{{ 'add_new_order' | translate }}" >
+				<form class="kt-form" autocomplete="off" id="tourFrm" style="width: 100%" [formGroup]="tourFrm">
+					<div class="kt-portlet__body">
+						<div class="form-group row">
+							<mat-form-field class="col-lg-6">
+								<input type="text" matInput placeholder="{{ 'order_number' | translate }}"
+									formControlName="order_number" name="order_number" id="order_number">
+							</mat-form-field>
+							<mat-form-field class="col-lg-6">
+								<input type="text" matInput placeholder="{{ 'description' | translate }}"
+									formControlName="description" name="description" id="description">
+							</mat-form-field>
+							<mat-form-field class="col-lg-6">
+								<input type="text" matInput currencyMask placeholder="{{ 'client_price' | translate }}"
+									formControlName="client_price" name="client_price" id="client_price" [(ngModel)]="cli_pri">
+							</mat-form-field>
+							<mat-form-field class="col-lg-6">
+								<mat-label>{{ 'price_basis' | translate }}</mat-label>
+								<mat-select formControlName="price_basis" name="price_basis" id="price_basis">
+									<mat-option *ngFor="let item of priceBasisList" [value]="item.value">
+										{{item.name}}
+									</mat-option>
+								</mat-select>
+							</mat-form-field>
+
+							<div class="col-lg-6 mt-2">
+								<kt-checkbox-group formControlName="day" ngDefaultControl class="checkbox-group" name="day" id="day">
+									<kt-checkbox *ngFor="let day of daysOfWeek" value="{{day.value}}">{{day.name}}</kt-checkbox>
+								</kt-checkbox-group>
+							</div>
+							<mat-form-field class="col-lg-6">
+								<mat-label>{{ 'order_type' | translate }}</mat-label>
+								<mat-select formControlName="order_type" name="order_type" id="order_type">
+									<mat-option *ngFor="let item of orderTypeList" [value]="item.value">
+										{{item.name}}
+									</mat-option>
+								</mat-select>
+							</mat-form-field>
+							<mat-checkbox class="col-lg-6 mt-3">{{ 'once_per_billing' | translate }}</mat-checkbox>
+							<mat-form-field class="col-lg-6">
+								<textarea type="text" matInput placeholder="{{ 'comments' | translate }}" formControlName="comment"
+									name="comment" id="comment"></textarea>
+							</mat-form-field>
+							<mat-checkbox class="col-lg-6">{{ 'no_customer_invoice' | translate }}</mat-checkbox>
+							<mat-form-field class="col-lg-6">
+								<input type="text" matInput daterangepicker [options]="valid_from"
+									placeholder="{{ 'valid_from' | translate }}" formControlName="valid_from" name="valid_from"
+									id="valid_from" (selected)="valid_fromSelect($event)"
+									(applyDaterangepicker)="dateApplied($event)"
+									[errorStateMatcher]="matcher">
+							</mat-form-field>
+							<mat-form-field class="col-lg-6">
+								<input type="text" matInput daterangepicker [options]="valid_from"
+									placeholder="{{ 'date_of_expiry' | translate }}" formControlName="date_of_expiry"
+									name="date_of_expiry" id="date_of_expiry" (selected)="date_of_expirySelect($event)"
+									(applyDaterangepicker)="dateApplied($event)"
+									[errorStateMatcher]="matcher">
+							</mat-form-field>
+							<mat-form-field class="col-lg-6">
+								<input type="text" matInput placeholder="{{ 'contractor' | translate }}" formControlName="contractor"
+									name="contractor" id="contractor">
+								<div *ngIf="flagDiv.isShowTbDropDown" class="dropdown right-align-table" (click)="onClickTable($event)">
+									<table class="table table-striped" datatable [dtOptions]="dtContractorOptions">
+										<thead>
+											<tr>
+												<th scope="col">{{'person_number' | translate}}</th>
+												<th scope="col">{{'salutation' | translate}}</th>
+												<th scope="col">{{'firstName' | translate}}</th>
+												<th scope="col">{{'surname' | translate}}</th>
+												<th scope="col">{{'phone' | translate}}</th>
+												<th scope="col" class="text-center nosort">{{'action' | translate}}</th>
+											</tr>
+										</thead>
+										<tbody *ngIf="personList">
+											<tr *ngFor="let atrData of personList; index as i" (click)="selectPerson(atrData)" id="contractor_person_Item">
+												<td>{{ atrData.person_number }}</td>
+												<td>{{ atrData.salutation}}</td>
+												<td>{{ atrData.first_name }}</td>
+												<td>{{ atrData.surname }}</td>
+												<td>{{ atrData.phone }}</td>
+												<td class="text-center" nowrap>
+													<button mat-icon-button color="primary" (click)="addPersonToClient(atrData.personId)"
+														matTooltip="{{'add_contcat_person' | translate}}">
+														<mat-icon>add_box</mat-icon>
+													</button>
+												</td>
+											</tr>
+										</tbody>
+
+										<tbody *ngIf="personList && personList.length === 0">
+											<tr>
+												<td colspan="6" class="text-center">{{ 'no_data_available' | translate }}</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</mat-form-field>
+							<mat-form-field class="col-lg-6">
+								<input type="text" matInput currencyMask placeholder="{{ 'contractor_price_week' | translate }}"
+									formControlName="contractor_price_week" name="contractor_price_week" id="contractor_price_week"
+									[(ngModel)]="con_pri_week">
+							</mat-form-field>
+							<mat-form-field class="col-lg-6">
+								<input type="text" matInput currencyMask placeholder="{{ 'contractor_price_weeken' | translate }}"
+									formControlName="contractor_price_weeken" name="contractor_price_weeken"
+									id="contractor_price_weeken" [(ngModel)]="con_pri_weeken">
+							</mat-form-field>
+						</div>
+					</div>
+					<div class="kt-portlet__foot">
+						<div class="kt-form__actions p-0">
+							<div class="row">
+								<div class="col-lg-12">
+									<button type="button" (click)="submit(tourFrm)"
+										class="btn btn-primary float-right">{{'save' | translate}}</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+			</mat-tab>
+			<mat-tab label="{{ 'add_existing_order' | translate }}" >
+				<kt-existing-order [clientId]="clientId" [orderExistIds]="orderExistIds"
+						(orderIdsList)="receiveOrderIdsList($event)"></kt-existing-order>
+			</mat-tab>
+		</mat-tab-group>
+	</div>
+</ng-template>

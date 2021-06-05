@@ -1,0 +1,26 @@
+<div class="row">
+	<div class="col-12 text-center" style="font-size: 25px; font-weight: 600;">{{'sign_in' | translate}}</div>
+
+	<div class="col-12" *ngIf="invalidLogin">
+		<div class="alert alert-danger alert-dismissible">
+			{{'invalidlogin' | translate}}
+		</div>
+	</div>
+
+	<div class="col-12">
+		<form class="kt-form" id="loginForm" autocomplete="off" [formGroup]="loginForm" autocomplete="off">
+			<div class="form-group">
+				<label for="email">{{'email' | translate}}:</label>
+				<input type="email" class="form-control" id="email" formControlName="email">
+			</div>
+			<div class="form-group">
+				<label for="pwd">{{'password' | translate}}:</label>
+				<input type="password" class="form-control" id="pwd" formControlName="password">
+			</div>
+			<div class="form-group text-center">
+				<button type="button" class="btn btn-block btn-primary" [disabled]="button_disable" (click)="submit()" >{{'login' | translate}}</button>
+			</div>
+			
+		</form>
+	</div>
+</div>

@@ -1,0 +1,64 @@
+{
+    "data": [
+        {
+			"id": 1,
+			"pos_no": 1,
+            "type": "Woche",
+			"description": "Tour 10 Richtung Kisdorf, Bark, Itstedt",
+			"price": "170,00",
+			"day": 9,
+			"value": "1.530,00",
+			"invoiceId": 1
+        },
+        {
+			"id": 2,
+			"pos_no": 2,
+            "type": "Woche",
+			"description": "Tour 15 Richt. HH-Alsterdorf, Stellingen, Schnelsen",
+			"price": "162,00",
+			"day": 9,
+			"value": "1.458,00",
+			"invoiceId": 2
+        },
+		{
+			"id": 3,
+			"pos_no": 3,
+            "type": "Woche",
+			"description": "Tour 18 Richtung Bonningstedt, Alveslohe, Quickborn",
+			"price": "162,00",
+			"day": 9,
+			"value": "1.458,00",
+			"invoiceId": 3
+		},
+		{
+			"id": 4,
+			"pos_no": 4,
+            "type": "Woche",
+			"description": "Tour 19 Richt. PI, Prisdorf, Ellerbek, Halstenbek",
+			"price": "160,00",
+			"day": 9,
+			"value": "1.440,00",
+			"invoiceId": 4
+		},
+		{
+			"id": 5,
+			"pos_no": 5,
+            "type": "Woche",
+			"description": "Tour 20 Richtung HH-Sasel,-Lemsahl,-Hummelsbuttel",
+			"price": "163,00",
+			"day": 9,
+			"value": "1.467,00",
+			"invoiceId": 5
+		},
+		{
+			"id": 6,
+			"pos_no": 6,
+            "type": "Woche",
+			"description": "Tour 21 Richt. Uetersen, Tornesch, Wedel, Schenefeld",
+			"price": "185,00",
+			"day": 9,
+			"value": "1.665,00",
+			"invoiceId": 6
+        }
+    ]
+}

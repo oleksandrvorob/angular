@@ -1,0 +1,43 @@
+<mat-card>
+	<div class="mat-table__wrapper">
+
+		<div class="col-12">
+			<div class="row">
+				<div class="col-8">
+
+				</div>
+				<div class="col-4">
+					<input type="text" name="" (input)="get_filterData($event)" class="form-control" placeholder="{{'search' | translate }}">
+				</div>
+			</div>
+		</div>
+
+		<div class="clearfix"></div>
+		<div class="col-12" [ngClass]="{'norecord': historyData.length ==0 }" >
+
+			<table class="table table-striped" datatable [dtOptions]="dtOptions" >
+				<thead>
+					<tr>
+						<th scope="col">{{'logno' | translate }}</th>
+						<th scope="col">{{'username' | translate }}</th>
+						<th scope="col">{{'description' | translate }}</th>
+						<th scope="col">{{'datetime' | translate }}</th>
+					</tr>
+				</thead>
+				<tbody *ngIf="historyData">
+					<tr *ngFor="let data of historyData; index as i" [class.active]="i == selectedRow" (click)="selectRow(i)">
+						<td>{{ data.logId }}</td>
+						<td>{{ data.user_name }}</td>
+						<td>{{ data.description }}</td>
+						<td>{{ data.log_time }}</td>
+					</tr>
+				</tbody>
+				<tbody *ngIf="historyData && historyData.length === 0">
+					<tr>
+						<td colspan="6" class="text-center">{{ 'no_data_available' | translate }}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</mat-card>

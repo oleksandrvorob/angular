@@ -1,0 +1,51 @@
+<div class="col-md-12">
+  <form  [formGroup]="priceHistoryForm">
+	<table class="table table-striped">
+		<thead>
+		<tr>
+			<th scope="col">{{'history_price' | translate}}</th>
+			<th scope="col">{{'history_validfrom' | translate}}</th>
+			<th scope="col">{{'history_validto' | translate}}</th>
+			<th scope="col">Delete</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr *ngFor="let item of priceList; index as i">
+			<td>
+			<mat-form-field>
+				<input matInput type="text" matAutosize={true} placeholder="" value="{{ item.price }}" formControlName="price" name="price" id="price">
+			</mat-form-field>
+			</td>
+			<td>
+			<mat-form-field>
+				<input matInput [matDatepicker]="picker1" placeholder="" [value]="item.valid_from" formControlName="valid_from" name="valid_from" id="valid_from">
+				<mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+				<mat-datepicker #picker1></mat-datepicker>
+			</mat-form-field>
+			</td>
+			<td>
+			<mat-form-field>
+				<input matInput [matDatepicker]="picker2" placeholder="" [value]="item.date_of_expiry" formControlName="date_of_expiry" name="date_of_expiry" id="date_of_expiry">
+				<mat-datepicker-toggle matSuffix [for]="picker2" color="#fff"></mat-datepicker-toggle>
+				<mat-datepicker #picker2></mat-datepicker>
+			</mat-form-field>
+			</td>
+			<td>
+			<button mat-icon-button aria-label="delete" (click)="handleDeleteRow(item, i)">
+				<mat-icon>delete</mat-icon>
+			</button>
+			</td>
+		</tr>
+		</tbody>
+	</table>
+  </form>
+  <div class="buttonsContainer">
+    <div class="buttonsGroup">
+      <button mat-raised-button (click)="onAdd()">Add New</button>
+    </div>
+    <div class="buttonsGroup">
+      <button mat-raised-button color="primary" (click)="onSave()">Save</button>
+      <button mat-raised-button color="warn" (click)="onClose()">Close</button>
+    </div>
+  </div>
+</div>

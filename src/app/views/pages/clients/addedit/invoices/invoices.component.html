@@ -1,0 +1,63 @@
+<div class="col-md-12">
+	<mat-card class="mb-3">
+		<div class="col-md-12">
+			<table class="table table-striped" datatable [dtOptions]="invoiceDTOptions">
+				<thead>
+					<tr>
+						<th scope="col" style="width: 120px;">{{'invoice_number' | translate}}</th>
+						<th scope="col">{{'invoice_date' | translate}}</th>
+						<th scope="col">{{'invoice_net' | translate}}</th>
+						<th scope="col">{{'invoice_vat' | translate}}</th>
+						<th scope="col">{{'invoice_gross' | translate}}</th>
+					</tr>
+				</thead>
+				<tbody *ngIf="invoiceList">
+					<tr *ngFor="let invoice of invoiceList; index as i" [class.active]="i == selectedRow" (click)="selectInvoice(invoice, i)">
+						<td>{{ invoice.invoice_no }}</td>
+						<td>{{ invoice.invoice_date }}</td>
+						<td>{{ invoice.invoice_net }}</td>
+						<td>{{ invoice.invoice_vat }}</td>
+						<td>{{ invoice.invoice_gross }}</td>
+					</tr>
+				</tbody>
+				<tbody *ngIf="invoiceList && invoiceList.length === 0">
+					<tr>
+						<td colspan="5" class="text-center">{{ 'no_data_available' | translate }}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</mat-card>
+	<mat-card class="mb-3">
+		<div class="col-md-12">
+			<table class="table table-striped" datatable [dtOptions]="invoiceItemsDTOptions">
+				<thead>
+					<tr>
+						<th scope="col" style="width: 120px;">{{'position_no' | translate}}</th>
+						<th scope="col">{{'type' | translate}}</th>
+						<th scope="col">{{'description' | translate}}</th>
+						<th scope="col">{{'price' | translate}}</th>
+						<th scope="col">{{'day' | translate}}</th>
+						<th scope="col">{{'value' | translate}}</th>
+					</tr>
+				</thead>
+				<tbody *ngIf="invoiceList">
+					<tr *ngFor="let invoiceItem of invoiceItems; index as i" [class.active]="i == selectedItemRow" (click)="selectInvoiceItem(i)">
+						<td>{{ invoiceItem.pos_no }}</td>
+						<td>{{ invoiceItem.type }}</td>
+						<td>{{ invoiceItem.description }}</td>
+						<td>{{ invoiceItem.price }}</td>
+						<td>{{ invoiceItem.day }}</td>
+						<td>{{ invoiceItem.value }}</td>
+					</tr>
+				</tbody>
+				<tbody *ngIf="invoiceItems && invoiceItems.length === 0">
+					<tr>
+						<td colspan="6" class="text-center">{{ 'no_data_available' | translate }}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</mat-card>
+</div>
+

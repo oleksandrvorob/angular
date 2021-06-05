@@ -1,0 +1,136 @@
+<mat-card>
+	<div class="bg-white float-right p-tb-4 w-100" >
+		<div class="button-row">
+			<button mat-raised-button color="primary" (click)="addTour(content)">{{'add_tour' | translate}}</button>
+		</div>
+	</div>
+
+	<table class="table table-striped">
+		<thead>
+		<tr>
+			<th scope="col">{{'tour_no' | translate}}</th>
+			<th scope="col">{{'client_award' | translate}}</th>
+			<th scope="col">{{'price_basis' | translate}}</th>
+			<th scope="col">{{'day' | translate}}</th>
+			<th scope="col">{{'tour_type' | translate}}</th>
+			<th scope="col">{{'action' | translate}}</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr *ngFor="let route of tourList; index as i">
+			<td>{{ route.tour_no }}</td>
+			<td>{{ route.client_award }}</td>
+			<td>{{ route.price_basis }}</td>
+			<td>{{ route.day }}</td>
+			<td>{{ route.tour_type }}</td>
+			<td>
+				<ng-template ngxPermissionsOnly="canEditECommerceData">
+					<button mat-icon-button color="primary" (click)="editTour(content, i)" matTooltip="{{'edit_tour' | translate}}">
+						<mat-icon>create</mat-icon>
+					</button>&nbsp;
+				</ng-template>
+
+				<ng-template ngxPermissionsOnly="canDeleteECommerceData">
+					<button mat-icon-button
+							(click)="deleteTour(i)"
+							color="warn"
+							matTooltip="{{'delete_tour' | translate}}"
+							type="button">
+						<mat-icon>delete</mat-icon>
+					</button>&nbsp;
+				</ng-template>
+			</td>
+		</tr>
+		</tbody>
+	</table>
+
+</mat-card>
+
+
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">{{'add_tour' | translate}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modalClose()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form class="kt-form kt-form--label-right" autocomplete="off" id="tourFrm" style="width: 100%" [formGroup]="tourFrm">
+      <div class="kt-portlet__body">
+        <div class="form-group row">
+          <div class="col-lg-6 mb-2">
+            <label for="tour_no">{{'tour_no' | translate}}</label>
+            <input type="number" formControlName="tour_no" class="form-control" name="tour_no" id="tour_no"
+                 placeholder="{{'tour_no' | translate}}">
+          </div>
+          <div class="col-lg-6 mb-2">
+            <label for="description">{{'description' | translate}}</label>
+            <input type="text" formControlName="description" class="form-control" name="description" id="description"
+                 placeholder="{{'description' | translate}}">
+          </div>
+          <div class="col-lg-6 mb-2">
+            <label for="client_award">{{'client_award' | translate}}</label>
+            <input type="text" formControlName="client_award" class="form-control" name="client_award" id="client_award"
+                 placeholder="{{'client_award' | translate}}">
+          </div>
+          <div class="col-lg-6 mb-2">
+            <label for="price_basis">{{'price_basis' | translate}}</label>
+            <select formControlName="price_basis" class="form-control" name="price_basis" id="price_basis">
+				<option *ngFor="let item of price_basis_data" [value]="item.value">{{item.name}}</option>
+			</select>
+          </div>
+          <div class="col-lg-6 mb-2">
+            <label for="day">{{'day' | translate}}</label>
+            <input type="date" formControlName="day" class="form-control" name="day" id="day"
+                 placeholder="{{'day' | translate}}">
+          </div>
+          <div class="col-lg-6 mb-2">
+            <label for="tour_type">{{'tour_type' | translate}}</label>
+            <input type="text" formControlName="tour_type" class="form-control" name="tour_type" id="tour_type"
+                 placeholder="{{'tour_type' | translate}}">
+          </div>
+          <div class="col-lg-6 mb-2">
+            <label for="remarks">{{'remarks' | translate}}</label>
+            <input type="text" formControlName="remarks" class="form-control" name="remarks" id="remarks"
+                 placeholder="{{'remarks' | translate}}">
+          </div>
+          <div class="col-lg-6 mb-2">
+            <label for="valid_from">{{'valid_from' | translate}}</label>
+            <input type="date" formControlName="valid_from" class="form-control" name="valid_from" id="valid_from"
+                 placeholder="{{'valid_from' | translate}}">
+          </div>
+          <div class="col-lg-6 mb-2">
+            <label for="date_of_expiry">{{'date_of_expiry' | translate}}</label>
+            <input type="date" formControlName="date_of_expiry" class="form-control" name="date_of_expiry" id="date_of_expiry"
+                 placeholder="{{'date_of_expiry' | translate}}">
+          </div>
+          <div class="col-lg-6 mb-2">
+            <label for="power_partners">{{'power_partners' | translate}}</label>
+            <input type="text" formControlName="power_partners" class="form-control" name="power_partners" id="power_partners"
+                 placeholder="{{'power_partners' | translate}}">
+          </div>
+          <div class="col-lg-6 mb-2">
+            <label for="ltp_prize_week">{{'ltp_prize_week' | translate}}</label>
+            <input type="text" formControlName="ltp_prize_week" class="form-control" name="ltp_prize_week" id="ltp_prize_week"
+                 placeholder="{{'ltp_prize_week' | translate}}">
+          </div>
+          <div class="col-lg-6 mb-2">
+            <label for="ltp_prize_we">{{'ltp_prize_we' | translate}}</label>
+            <input type="text" formControlName="ltp_prize_we" class="form-control" name="ltp_prize_we" id="ltp_prize_we"
+                  placeholder="{{'ltp_prize_we' | translate}}">
+          </div>
+        </div>
+      </div>
+      <div class="kt-portlet__foot">
+        <div class="kt-form__actions p-0">
+          <div class="row">
+            <div class="col-lg-12">
+              <button type="button" (click)="submit(createTourForm)" class="btn btn-primary float-right" >{{'save' | translate}}</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</ng-template>

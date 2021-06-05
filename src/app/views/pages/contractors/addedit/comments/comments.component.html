@@ -1,0 +1,13 @@
+<mat-card>
+    <form class="kt-form kt-form--label-right" [formGroup]="commentFrm" >
+      <div class="kt-portlet__body">
+        <div class="form-group row">
+          <div class="col-lg-12 mb-2">
+            <textarea class="form-control" style="min-height: 200px;"
+                formControlName="comment" id="comments" placeholder="{{ 'comments' | translate }}">
+            </textarea>
+          </div>
+        </div>
+      </div>
+    </form>
+  </mat-card>

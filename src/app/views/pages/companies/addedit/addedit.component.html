@@ -1,0 +1,24 @@
+<mat-card-content>
+  <mat-tab-group class="demo-tab-group">
+    <mat-tab label="{{'overview' | translate}}">
+      <div class="demo-tab-content">
+        <kt-overview [basicData]="basicData" (changeFormData)="setDisableStatus($event)"></kt-overview>
+      </div>
+    </mat-tab>
+    <mat-tab label="{{'invoice' | translate}}">
+      <div class="demo-tab-content">
+        <kt-invoice [invoiceData]="invoiceData" (changeFormData)="setDisableStatus($event)"></kt-invoice>
+      </div>
+    </mat-tab>
+    <mat-tab label="{{'banking' | translate}}">
+      <div class="demo-tab-content">
+        <kt-banking [bankingDatas]="bankingData" (changeFormData)="setDisableStatus($event)"></kt-banking>
+      </div>
+    </mat-tab>
+    <mat-tab label="{{'history' | translate}}" *ngIf="companyId">
+      <div class="demo-tab-content">
+        <kt-history></kt-history>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</mat-card-content>

@@ -1,0 +1,201 @@
+<mat-card>
+	<form class="kt-form kt-form--label-right" id="overviewFrm" [formGroup]="billFrData" autocomplete="off">
+		<div class="col-12 mb-2">
+			<mat-card>
+				<div class="row mt-3">
+					<mat-form-field class="col-md-4">
+						<input type="text" matInput daterangepicker [options]="invoice_date"
+							placeholder="{{ 'invoice_date' | translate }}" formControlName="invoice_date"
+							name="invoice_date" id="invoice_date" (selected)="invoice_dateSelect($event)"
+							(applyDaterangepicker)="dateApplied($event)" [errorStateMatcher]="matcher">
+					</mat-form-field>
+					<mat-form-field class="col-md-4">
+						<mat-label>{{ 'company' | translate }}</mat-label>
+						<mat-select formControlName="companyId" name="companyId" id="companyId" [(ngModel)]="companyCode"
+							(selectionChange)="selectCompany($event)">
+							<mat-option *ngFor="let item of companyList" [value]="item.companyId">
+								{{item.code}}
+							</mat-option>
+						</mat-select>
+					</mat-form-field>
+					<mat-form-field class="col-md-4">
+						<input type="text" matInput placeholder="{{ 'diesel_price' | translate }}"
+							formControlName="diesel_price" name="diesel_price" id="diesel_price">
+					</mat-form-field>
+				</div>
+			</mat-card>
+		</div>
+		<div class="col-12 mb-2">
+			<mat-card>
+				<div class="col-12 mb-4">
+					<div class="mb-4">
+						<mat-checkbox class="col-lg-12" formControlName="customer_bills" name="customer_bills"
+							id="customer_bills">
+							{{ 'customer_bills' | translate }}
+						</mat-checkbox>
+					</div>
+					<div class="row mb-3">
+						<div class="col-7 pl-4">
+							<div class="mb-3">
+								<mat-checkbox class="col-lg-12" formControlName="customer_monthly_billing"
+									name="customer_monthly_billing" id="customer_monthly_billing">
+									{{ 'monthly_billing' | translate }}
+								</mat-checkbox>
+							</div>
+							<div class="mb-3">
+								<mat-checkbox class="col-lg-12" formControlName="customer_billing1"
+									name="customer_billing1" id="customer_billing1">
+									{{ 'billing1' | translate }}
+								</mat-checkbox>
+							</div>
+							<div class="mb-3">
+								<mat-checkbox class="col-lg-12" formControlName="customer_billing2"
+									name="customer_billing2" id="customer_billing2">
+									{{ 'billing2' | translate }}
+								</mat-checkbox>
+							</div>
+							<div class="mb-4">
+								<mat-checkbox class="col-lg-12" formControlName="customer_billing_diesel_surcharge"
+									name="customer_billing_diesel_surcharge" id="customer_billing_diesel_surcharge">
+									{{ 'billing_diesel_surcharge' | translate }}
+								</mat-checkbox>
+							</div>
+							<div class="mb-2">
+								<mat-form-field class="col-md-6">
+									<input type="text" matInput placeholder="{{ 'customer_only' | translate }}"
+										formControlName="customer_only" name="customer_only" id="customer_only">
+								</mat-form-field>
+								<mat-form-field class="col-md-6">
+									<input type="text" matInput placeholder="{{ 'group_only' | translate }}"
+										formControlName="group_only" name="group_only" id="group_only">
+								</mat-form-field>
+							</div>
+						</div>
+						<div class="col-5">
+							<div class="mb-2">
+								<mat-form-field class="col-md-12">
+									<input type="text" matInput placeholder="{{ 'month' | translate  }}"
+										formControlName="diesel_price" name="customer_billing_month"
+										id="customer_billing_month">
+								</mat-form-field>
+
+							</div>
+							<div class="mb-2">
+								<mat-form-field class="col-md-12">
+									<input type="text" matInput placeholder="{{ 'year' | translate }}"
+										formControlName="diesel_price" name="customer_billing_year"
+										id="customer_billing_year">
+								</mat-form-field>
+							</div>
+							<div class="mb-2">
+								<mat-form-field class="col-md-12">
+									<input type="text" matInput daterangepicker [options]="customer_billing_from"
+										placeholder="{{ 'from' | translate }}" formControlName="customer_billing_from"
+										name="customer_billing_from" id="customer_billing_from"
+										(selected)="customer_billing_start($event)"
+										(applyDaterangepicker)="dateApplied($event)" [errorStateMatcher]="matcher">
+								</mat-form-field>
+
+							</div>
+							<div class="mb-2">
+								<mat-form-field class="col-md-12">
+									<input type="text" matInput daterangepicker [options]="customer_billing_to"
+										placeholder="{{ 'to' | translate }}" formControlName="customer_billing_to"
+										name="customer_billing_to" id="customer_billing_to"
+										(selected)="customer_billing_end($event)"
+										(applyDaterangepicker)="dateApplied($event)" [errorStateMatcher]="matcher">
+								</mat-form-field>
+							</div>
+						</div>
+					</div>
+				</div>
+			</mat-card>
+		</div>
+		<div class="col-12 mb-2">
+			<mat-card>
+				<div class="col-12 mb-4">
+					<div class="mb-4">
+						<mat-checkbox class="col-lg-12" formControlName="businessman_bills" name="businessman_bills"
+							id="businessman_bills">
+							{{ 'businessman_bills' | translate }}
+						</mat-checkbox>
+					</div>
+					<div class="row mb-3">
+						<div class="col-7 pl-4">
+							<div class="mb-3">
+								<mat-checkbox class="col-lg-12" formControlName="businessman_monthly_billing"
+									name="businessman_monthly_billing" id="businessman_monthly_billing">
+									{{ 'monthly_billing' | translate }}
+								</mat-checkbox>
+							</div>
+							<div class="mb-3">
+								<mat-checkbox class="col-lg-12" formControlName="businessman_billing1"
+									name="businessman_billing1" id="businessman_billing1">
+									{{ 'billing1' | translate }}
+								</mat-checkbox>
+							</div>
+							<div class="mb-3">
+								<mat-checkbox class="col-lg-12" formControlName="businessman_billing2"
+									name="businessman_billing2" id="businessman_billing2">
+									{{ 'billing2' | translate }}
+								</mat-checkbox>
+							</div>
+							<div class="mb-4">
+								<mat-checkbox class="col-lg-12" formControlName="businessman_billing_diesel_surcharge"
+									name="businessman_billing_diesel_surcharge" id="businessman_billing_diesel_surcharge">
+									{{ 'billing_diesel_surcharge' | translate }}
+								</mat-checkbox>
+							</div>
+							<div class="mb-2">
+								<mat-form-field class="col-md-6">
+									<input type="text" matInput placeholder="{{ 'businessman_only' | translate }}"
+										formControlName="businessman_only" name="businessman_only" id="businessman_only">
+								</mat-form-field>
+								<mat-form-field class="col-md-6">
+									<input type="text" matInput placeholder="{{ 'group_only' | translate }}"
+										formControlName="group_only" name="group_only" id="group_only">
+								</mat-form-field>
+							</div>
+						</div>
+						<div class="col-5">
+							<div class="mb-2">
+								<mat-form-field class="col-md-12">
+									<input type="text" matInput placeholder="{{ 'month' | translate  }}"
+										formControlName="diesel_price" name="businessman_billing_month"
+										id="businessman_billing_month">
+								</mat-form-field>
+
+							</div>
+							<div class="mb-2">
+								<mat-form-field class="col-md-12">
+									<input type="text" matInput placeholder="{{ 'year' | translate }}"
+										formControlName="diesel_price" name="businessman_billing_year"
+										id="businessman_billing_year">
+								</mat-form-field>
+							</div>
+							<div class="mb-2">
+								<mat-form-field class="col-md-12">
+									<input type="text" matInput daterangepicker [options]="businessman_billing_from"
+										placeholder="{{ 'from' | translate }}" formControlName="businessman_billing_from"
+										name="businessman_billing_from" id="businessman_billing_from"
+										(selected)="businessman_billing_start($event)"
+										(applyDaterangepicker)="dateApplied($event)" [errorStateMatcher]="matcher">
+								</mat-form-field>
+
+							</div>
+							<div class="mb-2">
+								<mat-form-field class="col-md-12">
+									<input type="text" matInput daterangepicker [options]="businessman_billing_to"
+										placeholder="{{ 'to' | translate }}" formControlName="businessman_billing_to"
+										name="businessman_billing_to" id="businessman_billing_to"
+										(selected)="businessman_billing_end($event)"
+										(applyDaterangepicker)="dateApplied($event)" [errorStateMatcher]="matcher">
+								</mat-form-field>
+							</div>
+						</div>
+					</div>
+				</div>
+			</mat-card>
+		</div>
+	</form>
+</mat-card>

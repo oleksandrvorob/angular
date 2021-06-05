@@ -1,0 +1,15 @@
+{
+    "status":"ok",
+    "draw":1, 
+    "recordsTotal":6, 
+    "recordsFiltered":6, 
+    "data":
+    [   
+        {"contractor_no":"1", "contractor":"contractor1", "client_no":"1", "client":"client1", "order_no":"1", "order":"order1", "amount":"amount1", "type":"type1", "client_price":"clientprice1", "contractor_price":"contractorprice1", "period":"period1"},
+        {"contractor_no":"2", "contractor":"contractor2", "client_no":"2", "client":"client2", "order_no":"2", "order":"order2", "amount":"amount2", "type":"type2", "client_price":"clientprice2", "contractor_price":"contractorprice2", "period":"period2"},
+        {"contractor_no":"3", "contractor":"contractor3", "client_no":"3", "client":"client3", "order_no":"3", "order":"order3", "amount":"amount3", "type":"type3", "client_price":"clientprice3", "contractor_price":"contractorprice3", "period":"period3"},
+        {"contractor_no":"4", "contractor":"contractor1", "client_no":"1", "client":"client1", "order_no":"1", "order":"order1", "amount":"amount1", "type":"type1", "client_price":"clientprice1", "contractor_price":"contractorprice1", "period":"period1"},
+        {"contractor_no":"5", "contractor":"contractor1", "client_no":"1", "client":"client1", "order_no":"1", "order":"order1", "amount":"amount1", "type":"type1", "client_price":"clientprice1", "contractor_price":"contractorprice1", "period":"period1"},
+        {"contractor_no":"6", "contractor":"contractor1", "client_no":"1", "client":"client1", "order_no":"1", "order":"order1", "amount":"amount1", "type":"type1", "client_price":"clientprice1", "contractor_price":"contractorprice1", "period":"period1"},
+    ]
+}

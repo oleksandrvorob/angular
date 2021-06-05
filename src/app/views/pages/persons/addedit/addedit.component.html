@@ -1,0 +1,23 @@
+<mat-card-content>
+	<mat-tab-group class="demo-tab-group">
+		<mat-tab label="{{ 'overview' | translate }}">
+			<kt-overview [basicData]="basicData" (changeFormData)="setDisableStatus($event)"></kt-overview>
+		</mat-tab>
+		
+		<mat-tab label="{{ 'order' | translate }}">
+			<kt-order [orderIdsList]="orderIdsList" [priceList]="priceList"></kt-order>
+		</mat-tab>
+
+		<mat-tab label="{{ 'position' | translate }}" *ngIf="!isAddMode">
+			<kt-position [positionList]="positionList"></kt-position>
+		</mat-tab>
+
+		<mat-tab label="{{ 'comments' | translate }}">
+			<kt-comments [comments] ="comments" (changeFormData)="setDisableStatus($event)"></kt-comments>
+		</mat-tab>
+
+		<mat-tab label="{{ 'history' | translate }}" *ngIf="personId">
+			<kt-history></kt-history>
+		</mat-tab>
+	</mat-tab-group>
+</mat-card-content>

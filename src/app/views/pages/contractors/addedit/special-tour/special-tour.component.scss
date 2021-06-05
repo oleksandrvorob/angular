@@ -1,0 +1,66 @@
+.checkbox-group{
+	display: flex;
+}
+
+input[type="checkbox"]{
+	width: 15px;
+	height: 15px;
+	margin-left: 5px;
+  }
+
+  .billing{
+	display: flex;
+	align-items: center;
+	margin-left: 10px;
+	margin-top: 8px;
+  }
+  .billing label{
+	margin: 0px;
+  }
+
+  .invoice{
+	display: flex;
+	align-items: center;
+	margin-left: 10px;
+	margin-top: 8px;
+}
+.invoice label{
+	margin: 0px;
+}
+
+table{
+	font-size: 12px;
+}
+
+table thead th:nth-child(2) {
+	width: 90px !important;
+}
+
+table tbody td:nth-child(2) {
+	width: 90px !important;
+}
+
+.dropdown {
+	position: absolute;
+	border: 1px solid #dfdcdc;
+	background-color: white;
+	padding: 5px;
+	border-radius: 5px;
+	font-size: 10px;
+	z-index: 9999;
+	margin-right: 10px;
+  }
+
+  .dropdown table{
+	  font-size: 10px;
+  }
+
+  input:focus + .dropdown  {
+	display: block;
+	z-index: 9999999;
+  }
+
+  .checkbox-group {
+	margin-left: 0px;
+  }
+

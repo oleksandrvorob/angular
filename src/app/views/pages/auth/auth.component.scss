@@ -1,0 +1,39 @@
+// import login css
+// @import "../../../../assets/css/demo1/pages/general/login/login-1.css";
+
+kt-auth, .kt-login {
+	height: 100%;
+
+	.mat-form-field {
+		width: 100%;
+	}
+
+	// add extra right padding when displaying spinner in button
+	.kt-spinner {
+		padding-right: 3rem !important;
+	}
+}
+
+
+.page-contant {
+    background: url('./../../../../assets/media//bg/login_background.jpg') no-repeat top center fixed;
+    height: 100%;
+    // background-position: center;
+    // background-repeat: no-repeat;
+	// background-size: cover;
+	-webkit-background-size: 100%; 
+    -moz-background-size: 100%; 
+    -o-background-size: 100%; 
+    background-size: 100%; 
+    -webkit-background-size: cover; 
+    -moz-background-size: cover; 
+    -o-background-size: cover; 
+    background-size: cover;
+	// background-size: 100vmax 100vmax;
+}
+
+.login-box {
+    background-color: rgba(255,255,255,.7) !important;
+	padding: 30px 40px !important;
+	border-radius: 5px;
+}

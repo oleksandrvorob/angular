@@ -1,0 +1,126 @@
+.responsible-border {
+	border: 1px solid #ebedf2;
+	border-radius: 5px;
+	width: 100%;
+	margin-left: 1px;
+}
+mat-card {
+	height: 100%;
+}
+.vat-mandatory{
+	display: flex;
+	align-items: center;
+}
+
+input[type="checkbox"]{
+	width: 15px;
+	height: 15px;
+	margin-right: 20px;
+}
+
+  [type=file] {
+    position: absolute;
+    filter: alpha(opacity=0);
+    opacity: 0;
+}
+input[type=file] + label {
+  border: 1px solid #CCC;
+  border-radius: 3px;
+  text-align: left;
+  padding: 10px;
+}
+[type=file] + label {
+  text-align: center;
+  left: 7.35em;
+  top: 0.5em;
+  background-color: #4DB6AC;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  margin-left: 10px;
+}
+[type=file] + label:hover {
+  background: #3399ff;
+}
+
+@media only screen and (min-width: 1025px) and (max-width: 1200px) {
+	.ustr_mandatory_value {
+		width: 40%;
+	}
+
+}
+
+.download-btn {
+	background-color: #4DB6AC;
+	color: #fff;
+	border: 1px solid #4DB6AC;
+	border-radius: 3px;
+	padding: 6px 10px;
+	margin-right: 8px;
+	font-size: 11px;
+	text-transform: uppercase;
+}
+
+.mobile-chip{
+	width: 100%;
+}
+
+.dropdown {
+	position: absolute;
+	border: 1px solid #282f48;
+	background-color: #282f48;
+	padding: 6px 0;
+	border-radius: 5px;
+	font-size: 12px;
+	top: 30px;
+	z-index: 9999;
+	table {
+		font-size: 12px;
+		margin-top: 0px !important;
+		margin-bottom: 4px !important;
+		tr {
+			cursor: pointer;
+		}
+		th {
+			padding: 8px 12px !important
+		}
+		th:first-child {
+			padding-left: 16px !important
+		}
+		th:last-child::before {
+			margin-right: 8px
+		}
+		th:last-child::after {
+			margin-right: 8px
+		}
+		td {
+			padding: 8px 12px !important
+		}
+		td:first-child {
+			padding-left: 16px !important
+		}
+		td:last-child::before {
+			margin-right: 8px
+		}
+		td:last-child::after {
+			margin-right: 8px
+		}
+	};
+	::ng-deep .row:last-child {
+		align-items: center;
+		margin: 0 4px;
+		.dataTables_info {
+			padding: 0px;
+		}
+		ul.pagination {
+			.paginate_button {
+				.page-link {
+					width: 24px;
+					height: 24px;
+					min-width: 24px;
+				}
+			}
+
+		}
+	}
+  }
